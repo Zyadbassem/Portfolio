@@ -21,7 +21,7 @@ function Welcome() {
       
       // Wave effect parameters
       float frequency = 2.5; // Controls how many waves appear
-      float amplitude = 0.1; // Controls the height of the waves
+      float amplitude = 0.08; // Controls the height of the waves
       float speed = 1.5; // Controls the speed of the animation
       
       // Map uv.x to cover both positive and negative values on x-axis

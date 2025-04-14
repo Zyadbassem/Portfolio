@@ -12,7 +12,7 @@ function Grass() {
     b: { value: 0.1, min: 0, max: 1, step: 0.01 },
   });
   const instancedMesh = useRef();
-  const instanceNumber = 60000;
+  const instanceNumber = 200000;
 
   const vertexShader = `
     varying vec2 vUv;
@@ -68,7 +68,7 @@ function Grass() {
     if (!instancedMesh.current) return;
 
     const dummy = new THREE.Object3D();
-    const width = 13;
+    const width = 30;
     const height = 9;
 
     for (let i = 0; i < instanceNumber; i++) {
@@ -110,7 +110,7 @@ function Grass() {
       </instancedMesh>
       <RigidBody type="fixed" position={[0, -0.2, 0]} restitution={0.5}>
         <mesh rotation={[0, 0, 0]}>
-          <boxGeometry args={[13, 0.2, 9, 1]} />
+          <boxGeometry args={[30, 0.2, 9, 1]} />
           <meshBasicMaterial color="#3f2219" opacity={0.5} />
         </mesh>
       </RigidBody>

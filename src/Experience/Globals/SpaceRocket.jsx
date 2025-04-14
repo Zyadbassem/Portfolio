@@ -64,17 +64,14 @@ function SpaceRocket() {
     const currentVel = spaceRocketRef.current.linvel();
     const position = spaceRocketRef.current.translation();
     if (keysPressed.current.ArrowUp) {
-      TARGET_VEL.current.y = Math.min(
-        TARGET_VEL.current.y + 0.07,
-        MAX_VELOCITY
-      );
+      TARGET_VEL.current.y = Math.min(TARGET_VEL.current.y + 0.1, MAX_VELOCITY);
     } else if (keysPressed.current.ArrowDown) {
       TARGET_VEL.current.y = Math.max(
-        TARGET_VEL.current.y - 0.07,
+        TARGET_VEL.current.y - 0.1,
         -MAX_VELOCITY
       );
     } else {
-      TARGET_VEL.current.y = Math.max(TARGET_VEL.current.y * 0.8, 0);
+      TARGET_VEL.current.y = Math.max(TARGET_VEL.current.y - 0.08, -0.2);
     }
 
     if (keysPressed.current.ArrowLeft) {

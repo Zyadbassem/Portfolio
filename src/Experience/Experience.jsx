@@ -7,6 +7,7 @@ import SpaceRocket from "./Globals/SpaceRocket";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
 import MagicWalls from "./Globals/MagicWalls";
+import FirstPhase from "./FirstPhase/FirstPhase";
 
 function Experience() {
   return (
@@ -28,13 +29,14 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, -1, 0]} paused={true}>
+        <Physics gravity={[0, 0, 0]} paused={false} debug>
           <MagicWalls />
           <Earth />
+          <FirstPhase />
           <OrbitControls enabled={true} />
           <Stars />
-          <ambientLight intensity={4} />
-          {/* <directionalLight intensity={10} position={[-3, 4, 0]} /> */}
+          <ambientLight intensity={1} />
+          <directionalLight intensity={4} position={[-3, 50, 0]} />
           <SpaceRocket />
           <axesHelper args={[5]} />
         </Physics>
