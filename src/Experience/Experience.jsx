@@ -6,6 +6,7 @@ import Stars from "./Globals/Stars";
 import SpaceRocket from "./Globals/SpaceRocket";
 import { Physics } from "@react-three/rapier";
 import { Leva } from "leva";
+import MagicWalls from "./Globals/MagicWalls";
 
 function Experience() {
   return (
@@ -27,9 +28,10 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, -1, 0]} paused>
+        <Physics gravity={[0, -1, 0]} paused={false} debug>
+          <MagicWalls />
           <Earth />
-          <OrbitControls enabled={true} />
+          <OrbitControls enabled={false} />
           <Stars />
           <ambientLight intensity={4} />
           {/* <directionalLight intensity={10} position={[-3, 4, 0]} /> */}
