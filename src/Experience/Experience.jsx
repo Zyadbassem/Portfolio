@@ -28,10 +28,10 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, -1, 0]} paused={false} debug>
+        <Physics gravity={[0, -1, 0]} paused={true}>
           <MagicWalls />
           <Earth />
-          <OrbitControls enabled={false} />
+          <OrbitControls enabled={true} />
           <Stars />
           <ambientLight intensity={4} />
           {/* <directionalLight intensity={10} position={[-3, 4, 0]} /> */}

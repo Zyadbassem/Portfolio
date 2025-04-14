@@ -146,16 +146,16 @@ function SpaceRocket() {
       }
     }
 
-    camera.position.y = THREE.MathUtils.lerp(
-      camera.position.y,
-      position.y + 1.5,
-      0.1
-    );
-    camera.position.x = THREE.MathUtils.lerp(
-      camera.position.x,
-      position.x,
-      0.1
-    );
+    // camera.position.y = THREE.MathUtils.lerp(
+    //   camera.position.y,
+    //   position.y + 1.5,
+    //   0.1
+    // );
+    // camera.position.x = THREE.MathUtils.lerp(
+    //   camera.position.x,
+    //   position.x,
+    //   0.1
+    // );
   });
 
   return (
