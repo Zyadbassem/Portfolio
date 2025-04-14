@@ -1,6 +1,15 @@
 import * as THREE from "three";
-
+import { useTexture } from "@react-three/drei";
+import { useEffect } from "react";
 function Welcome() {
+  const textureMap = useTexture("/map-for-welcome.png");
+  useEffect(() => {
+    if (textureMap) {
+      textureMap.needsUpdate = true;
+      textureMap.wrapS = textureMap.wrapT = THREE.RepeatWrapping;
+    }
+  }, [textureMap]);
+
   const vertexShader = `
     varying vec2 vUv;
     void main() {
@@ -15,11 +24,18 @@ function Welcome() {
     }
     `;
   const fragmentShader = `
+    uniform sampler2D textureMap;
     varying vec2 vUv;
     void main() {
-        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        vec4 color = texture2D(textureMap, vUv);
+        gl_FragColor = vec4(color.rgb, 1.0);
     }
     `;
+  const uniforms = {
+    textureMap: {
+      value: textureMap,
+    },
+  };
 
   const materialForLongs = new THREE.MeshBasicMaterial({ color: "#583927" });
   const geometryForLongs = new THREE.CylinderGeometry(0.01, 0.01, 2);
@@ -40,6 +56,7 @@ function Welcome() {
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
+          uniforms={uniforms}
           side={THREE.DoubleSide}
         />
       </mesh>
