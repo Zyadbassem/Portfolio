@@ -8,7 +8,7 @@ function Earth() {
   return (
     <>
       <Grass />
-      {/* <Sky /> */}
+      <Sky />
       <Trees />
       <Station />
       <Welcome />

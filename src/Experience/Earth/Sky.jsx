@@ -17,7 +17,7 @@ function DynamiqueSky() {
     azimuth,
   } = useControls({
     x: { value: 100, min: -1000, max: 1000 },
-    y: { value: -1000, min: -1000, max: 1000 },
+    y: { value: 100, min: -1000, max: 1000 },
     z: { value: -600, min: -1000, max: 1000 },
     turbidity: { value: 10, min: -100, max: 100 },
     rayleigh: { value: 7, min: -100, max: 100 },
