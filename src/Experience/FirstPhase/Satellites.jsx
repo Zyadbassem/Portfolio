@@ -1,19 +1,20 @@
 import { useGLTF } from "@react-three/drei";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   CuboidCollider,
   CylinderCollider,
   RigidBody,
 } from "@react-three/rapier";
 function Satellites() {
+  const satellitesRef = useRef([]);
   const gltf = useGLTF("/satellites.glb");
-  const count = 5;
+  const count = 4;
   const satellites = useMemo(() => {
     const clonedSatellites = [];
     for (let i = 0; i < count; i++) {
-      const width = 20;
-      const height = 10;
+      const width = 15;
+      const height = 5;
       const randomX = (Math.random() - 0.5) * width;
       const randomY = (Math.random() - 0.5) * height;
       const randomYRotation = Math.random() * Math.PI * 2;
@@ -27,6 +28,13 @@ function Satellites() {
     return clonedSatellites;
   });
 
+  useEffect(() => {
+    satellitesRef.current.forEach((satelliteRef, index) => {
+      if (satelliteRef) {
+        satelliteRef.applyTorqueImpulse({ x: 0, y: 0.2, z: 0 }, true);
+      }
+    });
+  }, [satellitesRef]);
   return (
     <>
       {satellites.map((satellite, index) => (
@@ -35,6 +43,11 @@ function Satellites() {
           colliders={false}
           position={satellite.position}
           rotation={satellite.rotation}
+          canSleep={false}
+          restitutionCombineRule="multiply"
+          ref={(satelliteRef) => {
+            satellitesRef.current[index] = satelliteRef;
+          }}
         >
           <primitive key={index} object={satellite.clone} scale={0.3} />
           <CylinderCollider

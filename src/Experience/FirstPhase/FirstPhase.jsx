@@ -1,12 +1,15 @@
 import { Gltf } from "@react-three/drei";
 import Satellites from "./Satellites";
+import ArrowAndText from "../Globals/ArrowAndText";
+import Projects from "./Projects";
 
 function FirstPhase() {
   return (
     <>
       <group position={[0, 15, 0]}>
         <Satellites />
-        {/* <Gltf src="/satellites.glb" position={[0, 0, 0]} scale={0.1} /> */}
+        <ArrowAndText text={`Projects => `} position={[-12, 10, -25]} />
+        <Projects position={[5, 10, -10]} />
       </group>
     </>
   );
