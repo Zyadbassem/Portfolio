@@ -27,6 +27,13 @@ app`,
         border: "#FFFFFF 1px solid",
         borderRadius: "5px",
         margin: "10px",
+        transition: "transform 0.3s ease-in-out",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "scale(1.05)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "scale(1)";
       }}
     >
       <img

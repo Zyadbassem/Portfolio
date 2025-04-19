@@ -29,7 +29,7 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, 0, 0]} paused={false} debug={true}>
+        <Physics gravity={[0, 0, 0]} paused={false} debug={false}>
           <MagicWalls />
           <Earth />
           <FirstPhase />
@@ -38,7 +38,6 @@ function Experience() {
           <ambientLight intensity={2} />
           <directionalLight intensity={4} position={[-3, 20, 20]} />
           <SpaceRocket />
-          <axesHelper args={[5]} />
         </Physics>
       </Canvas>
     </>

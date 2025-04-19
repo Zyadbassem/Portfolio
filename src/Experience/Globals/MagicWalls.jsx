@@ -15,7 +15,8 @@ function MagicWalls() {
       <RigidBody type="fixed" colliders={false} position={[0, 10, 6]}>
         <CuboidCollider args={[15, 10, 1]} />
       </RigidBody>
-      <RigidBody type="fixed" colliders={false} position={[0, 30.5, 0]}>
+
+      <RigidBody type="fixed" colliders={false} position={[0, 40.5, 0]}>
         <CuboidCollider args={[20, 0.5, 5]} />
       </RigidBody>
     </>
