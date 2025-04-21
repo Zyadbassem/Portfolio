@@ -9,6 +9,7 @@ import { Leva } from "leva";
 import MagicWalls from "./Globals/MagicWalls";
 import FirstPhase from "./FirstPhase/FirstPhase";
 import * as THREE from "three";
+import SecondPhase from "./SecondPhase/SecondPhase";
 function Experience() {
   return (
     <>
@@ -29,11 +30,12 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, 0, 0]} paused={false} debug={false}>
+        <Physics gravity={[0, 0, 0]} paused={false} debug={true}>
           <MagicWalls />
           <Earth />
-          <FirstPhase />
-          <OrbitControls enabled={true} />
+          <FirstPhase position={[0, 15, 0]} />
+          <SecondPhase position={[0, 40, 0]} />
+          <OrbitControls enabled={false} />
           <Stars />
           <ambientLight intensity={2} />
           <directionalLight intensity={4} position={[-3, 20, 20]} />

@@ -6,7 +6,7 @@ function ArrowAndText({ text, position }) {
   const textRef = useRef();
   useFrame(({ clock }) => {
     if (textRef.current) {
-      textRef.current.position.z = Math.cos(clock.elapsedTime) * 2 - 25; // Rotate the text
+      textRef.current.position.z = Math.cos(clock.elapsedTime) * 2 - 20; // Rotate the text
       textRef.current.position.x = Math.sin(clock.elapsedTime) * 2 - 10; // Rotate the text
     }
   });
