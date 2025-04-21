@@ -1,0 +1,27 @@
+import { useTexture } from "@react-three/drei";
+import { useEffect } from "react";
+import * as THREE from "three";
+import { RigidBody } from "@react-three/rapier";
+
+function Skill({ position = [0, 0, 0], texture = "djangologo.png" }) {
+  const mapTexture = useTexture(`/project_assets/logos/${texture}`);
+
+  useEffect(() => {
+    if (mapTexture) {
+      mapTexture.wrapS = mapTexture.wrapT = THREE.RepeatWrapping;
+      mapTexture.repeat.set(2, 1);
+      mapTexture.needsUpdate = true;
+    }
+  }, [mapTexture]);
+
+  return (
+    <RigidBody colliders="hull">
+      <mesh scale={0.5} position={position}>
+        <sphereGeometry />
+        {mapTexture && <meshBasicMaterial map={mapTexture} />}
+      </mesh>
+    </RigidBody>
+  );
+}
+
+export default Skill;
