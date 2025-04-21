@@ -3,225 +3,230 @@ import * as THREE from "three";
 
 function SkillsText() {
   const geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
-  const material = new THREE.MeshBasicMaterial({ color: "#fff" });
+  const capSMaterial = new THREE.MeshBasicMaterial({ color: "#FF0000" });
+  const kMaterial = new THREE.MeshBasicMaterial({ color: "#009DFF" });
+  const iMaterial = new THREE.MeshBasicMaterial({ color: "#C8FF62" });
+  const lMaterial = new THREE.MeshBasicMaterial({ color: "#FF00F6" });
+  const secLMaterial = new THREE.MeshBasicMaterial({ color: "#5500FF" });
+  const sMaterial = new THREE.MeshBasicMaterial({ color: "#FFC300" });
   return (
     <group position={[-2, 0, 0.2]}>
       <group position={[0.3, 0, 0]}>
         <TextBuildingBlock
           position={[-1.5, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.1, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-0.9, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.1, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.5, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-1.1, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
         <TextBuildingBlock
           position={[-0.9, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={capSMaterial}
         />
       </group>
       <group position={[0, 0, 0]}>
         <TextBuildingBlock
           position={[0, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0.2, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0.4, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
         <TextBuildingBlock
           position={[0.4, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={kMaterial}
         />
       </group>
       <group position={[1, 0, 0]}>
         <TextBuildingBlock
           position={[0, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={iMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={iMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={iMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={iMaterial}
         />
       </group>
       <group position={[1.6, 0, 0]}>
         <TextBuildingBlock
           position={[0, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
         <TextBuildingBlock
           position={[0, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
         <TextBuildingBlock
           position={[0.2, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={lMaterial}
         />
       </group>
       <group position={[2.3, 0, 0]}>
         <TextBuildingBlock
           position={[0, 0.8, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
         <TextBuildingBlock
           position={[0, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
         <TextBuildingBlock
           position={[0, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
         <TextBuildingBlock
           position={[0.2, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={secLMaterial}
         />
       </group>
       <group position={[4.5, 0, 0]}>
         <TextBuildingBlock
           position={[-1.5, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
 
         <TextBuildingBlock
           position={[-1.1, 0.2, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
         <TextBuildingBlock
           position={[-1.5, 0.4, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
         <TextBuildingBlock
           position={[-1.3, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
         <TextBuildingBlock
           position={[-1.1, 0.6, 0]}
           geometry={geometry}
-          material={material}
+          material={sMaterial}
         />
       </group>
     </group>

@@ -34,8 +34,8 @@ function Experience() {
           <MagicWalls />
           <Earth />
           <FirstPhase position={[0, 15, 0]} />
-          <SecondPhase position={[0, 40, 0]} />
-          <OrbitControls enabled={false} />
+          <SecondPhase position={[0, 50, 0]} />
+          <OrbitControls enabled={true} />
           <Stars />
           <ambientLight intensity={2} />
           <directionalLight intensity={4} position={[-3, 20, 20]} />
