@@ -1,3 +1,4 @@
+import Moon from "./Moon";
 import Skill from "./Skill";
 import SkillsText from "./SkillsText";
 
@@ -38,6 +39,7 @@ function SecondPhase({ position = [0, 0, 0] }) {
           texture={skill.textureUrl}
         />
       ))}
+      <Moon position={[-10, -10, -20]} />
     </group>
   );
 }
