@@ -15,8 +15,8 @@ function Skill({ position = [0, 0, 0], texture = "djangologo.png" }) {
   }, [mapTexture]);
 
   return (
-    <RigidBody colliders="hull">
-      <mesh scale={0.5} position={position}>
+    <RigidBody colliders="ball" position={position}>
+      <mesh scale={0.5}>
         <sphereGeometry />
         {mapTexture && <meshBasicMaterial map={mapTexture} />}
       </mesh>

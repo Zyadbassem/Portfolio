@@ -9,12 +9,12 @@ import {
 function Satellites() {
   const satellitesRef = useRef([]);
   const gltf = useGLTF("/satellites.glb");
-  const count = 4;
+  const count = 15;
   const satellites = useMemo(() => {
     const clonedSatellites = [];
     for (let i = 0; i < count; i++) {
       const width = 15;
-      const height = 5;
+      const height = 10;
       const randomX = (Math.random() - 0.5) * width;
       const randomY = (Math.random() - 0.5) * height;
       const randomYRotation = Math.random() * Math.PI * 2;
@@ -31,7 +31,7 @@ function Satellites() {
   useEffect(() => {
     satellitesRef.current.forEach((satelliteRef, index) => {
       if (satelliteRef) {
-        satelliteRef.applyTorqueImpulse({ x: 0, y: 0.2, z: 0 }, true);
+        satelliteRef.applyTorqueImpulse({ x: 0, y: 0.01, z: 0 }, true);
       }
     });
   }, [satellitesRef]);
@@ -43,26 +43,26 @@ function Satellites() {
           colliders={false}
           position={satellite.position}
           rotation={satellite.rotation}
-          canSleep={false}
+          canSleep={true}
           restitutionCombineRule="multiply"
           ref={(satelliteRef) => {
             satellitesRef.current[index] = satelliteRef;
           }}
         >
-          <primitive key={index} object={satellite.clone} scale={0.3} />
+          <primitive key={index} object={satellite.clone} scale={0.15} />
           <CylinderCollider
-            args={[0.9, 0.45]}
-            position={[0.35, 0, -0.4]}
+            args={[0.4, 0.225]}
+            position={[0.15, 0, -0.2]}
             rotation={[Math.PI * 0.45, 0, Math.PI * 0.2]}
           />
           <CuboidCollider
-            args={[0.9, 0.05, 0.5]}
-            position={[1.56, -0.11, 0.12]}
+            args={[0.45, 0.025, 0.25]}
+            position={[0.78, -0.055, 0.06]}
             rotation={[Math.PI * -2.58, Math.PI * 0.04, Math.PI * 0.83]}
           />
           <CuboidCollider
-            args={[0.9, 0.05, 0.5]}
-            position={[-0.77, -0.23, -1.31]}
+            args={[0.45, 0.025, 0.25]}
+            position={[-0.385, -0.115, -0.655]}
             rotation={[Math.PI * -2.58, Math.PI * 0.04, Math.PI * 0.83]}
           />
         </RigidBody>
