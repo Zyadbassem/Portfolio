@@ -5,27 +5,27 @@ function SecondPhase({ position = [0, 0, 0] }) {
   const skills = [
     {
       textureUrl: "expressjslogo.png",
-      position: [-6, -3, 0],
+      position: [-3.5, -1.5, 0],
     },
     {
       textureUrl: "jslogo.png",
-      position: [-4, -3, 0],
+      position: [-2.5, -1.5, 0],
     },
     {
       textureUrl: "htmllogo.png",
-      position: [-2, -3, 0],
+      position: [-1.5, -1.5, 0],
     },
     {
       textureUrl: "reactlogo.png",
-      position: [0, -3, 0],
+      position: [-0.5, -1.5, 0],
     },
     {
       textureUrl: "threelogo.png",
-      position: [2, -3, 0],
+      position: [0.5, -1.5, 0],
     },
     {
       textureUrl: "djangologo.png",
-      position: [4, -3, 0],
+      position: [1.5, -1.5, 0],
     },
   ];
   return (
