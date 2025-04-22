@@ -158,12 +158,13 @@ function SpaceRocket() {
   return (
     <RigidBody
       ref={spaceRocketRef}
-      position={[0, 0.1, 0.01]}
+      position={[0, 0.1, -0.05]}
       mass={30}
       colliders={false}
       lockRotations
       linearDamping={0.8}
       angularDamping={2}
+      lockTranslations={[false, false, true]}
     >
       {/* Colliders */}
       <CylinderCollider args={[0.3, 0.1]} position={[0, 0.3, 0.08]} />

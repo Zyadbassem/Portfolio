@@ -10,7 +10,7 @@ function SkillsText() {
   const secLMaterial = new THREE.MeshBasicMaterial({ color: "#5500FF" });
   const sMaterial = new THREE.MeshBasicMaterial({ color: "#FFC300" });
   return (
-    <group position={[-2, 0, 0.2]}>
+    <group position={[-2, 0, 0]}>
       <group position={[0.3, 0, 0]}>
         <TextBuildingBlock
           position={[-1.5, 0, 0]}
