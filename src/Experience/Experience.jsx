@@ -10,6 +10,7 @@ import MagicWalls from "./Globals/MagicWalls";
 import FirstPhase from "./FirstPhase/FirstPhase";
 import * as THREE from "three";
 import SecondPhase from "./SecondPhase/SecondPhase";
+import Clouds from "./Globals/Clouds";
 function Experience() {
   return (
     <>
@@ -33,8 +34,9 @@ function Experience() {
         <Physics gravity={[0, 0, 0]} paused={false} debug={true}>
           <MagicWalls />
           <Earth />
-          <FirstPhase position={[0, 15, 0]} />
-          <SecondPhase position={[0, 50, 0]} />
+          <Clouds position={[0, 10, 0]} />
+          <FirstPhase position={[0, 30, 0]} />
+          <SecondPhase position={[0, 70, 0]} />
           <OrbitControls enabled={true} />
           <Stars />
           <ambientLight intensity={2} />

@@ -29,9 +29,9 @@ function Satellites() {
   });
 
   useEffect(() => {
-    satellitesRef.current.forEach((satelliteRef, index) => {
+    satellitesRef.current.forEach((satelliteRef, _) => {
       if (satelliteRef) {
-        satelliteRef.applyTorqueImpulse({ x: 0, y: 0.01, z: 0 }, true);
+        satelliteRef.applyTorqueImpulse({ x: 0, y: 0.005, z: 0 }, true);
       }
     });
   }, [satellitesRef]);
