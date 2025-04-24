@@ -7,6 +7,10 @@ function MeteoriteFlames({
   maxWidth = 1,
   maxHeight = 1,
   maxDepth = 1,
+  speed = 0.1,
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+  initialImpulse = 1,
 }) {
   const pointsRef = useRef();
   const geometry = useMemo(() => {
@@ -31,7 +35,7 @@ function MeteoriteFlames({
       colorArray[i * 3] = 0.8 + Math.random() * 0.2;
       colorArray[i * 3 + 1] = 0.3 + Math.random() * 0.5;
       colorArray[i * 3 + 2] = Math.random() * 0.2;
-      velocityArray[i] = 0.1 + Math.random() * 0.2;
+      velocityArray[i] = speed + Math.random() * speed * 2;
       lifeArray[i] = 1.0;
     }
 
@@ -47,16 +51,21 @@ function MeteoriteFlames({
     geometry.setAttribute("life", new THREE.BufferAttribute(lifeArray, 1));
     geometry.setAttribute("color", new THREE.BufferAttribute(colorArray, 3));
     return geometry;
-  }, [countHolder, maxWidth, maxHeight, maxDepth]);
+  }, [countHolder, maxWidth, maxHeight, maxDepth, speed]);
 
   const material = useMemo(() => {
+    const normalizedImpulse = initialImpulse / 10;
     const vertexShader = `
+      uniform float impluse;
       attribute float life;
       varying vec3 vColor;
       void main() {
         vec3 pos = position;
-        vec3 color = vec3(0.8, 0.3, 0.1);
-        vColor = color * life;
+        vec3 startColor = vec3(1.0, 0, 0);  // Orange-red
+        vec3 endColor = vec3(0.1, 0.4, 0.8);     // Light blue
+        vec3 baseColor = mix(startColor, endColor, impluse);
+        vec3 color = baseColor * life;
+        vColor = color;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
         gl_PointSize = 10.0 * life;
       }
@@ -66,7 +75,7 @@ function MeteoriteFlames({
       void main() {
         float dist = length(gl_PointCoord - vec2(0.5));
         if (dist > 0.5) discard;
-        gl_FragColor = vec4(vColor, 1.0 - dist);
+        gl_FragColor = vec4(vColor, 1.0 - dist); // Alpha fades towards edges
       }
     `;
     return new THREE.ShaderMaterial({
@@ -74,9 +83,12 @@ function MeteoriteFlames({
       fragmentShader,
       transparent: true,
       depthWrite: false,
+      uniforms: {
+        impluse: { value: normalizedImpulse },
+      },
       blending: THREE.AdditiveBlending,
     });
-  }, []);
+  }, [initialImpulse]);
 
   useFrame((state, delta) => {
     if (!pointsRef.current) return;
@@ -101,7 +113,7 @@ function MeteoriteFlames({
         positions[i3] = newX;
         positions[i3 + 1] = newY;
         positions[i3 + 2] = newZ;
-        velocities[i] = 0.1 + Math.random() * 0.2;
+        velocities[i] = speed + Math.random() * speed * 2;
         y = newY;
       } else {
         positions[i3 + 1] = y;
@@ -119,8 +131,8 @@ function MeteoriteFlames({
     <points
       ref={pointsRef}
       args={[geometry, material]}
-      position={[2.5, 2.5, 0]}
-      rotation={[0, 0, -Math.PI * 0.25]}
+      position={position}
+      rotation={rotation}
     />
   );
 }

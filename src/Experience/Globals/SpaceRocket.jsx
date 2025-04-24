@@ -145,7 +145,7 @@ function SpaceRocket() {
 
     // camera.position.y = THREE.MathUtils.lerp(
     //   camera.position.y,
-    //   position.y + 1.5,
+    //   position.y + 1,
     //   0.1,
     // );
     // camera.position.x = THREE.MathUtils.lerp(

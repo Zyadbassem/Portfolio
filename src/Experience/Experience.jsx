@@ -25,20 +25,20 @@ function Experience() {
           left: 0,
         }}
         camera={{
-          position: [0, 1, 7],
+          position: [0, 0, 7],
           fov: 35,
           rotation: [0, 0, 0],
         }}
       >
         <Stats />
-        <Physics gravity={[0, 0, 0]} paused={false} debug={true}>
+        <Physics gravity={[0, 0, 0]} paused={false} debug={false}>
           <MagicWalls />
           <Earth />
           <Clouds position={[0, 10, 0]} />
           <FirstPhase position={[0, 30, 0]} />
           <SecondPhase position={[0, 70, 0]} />
           <OrbitControls enabled={true} />
-          {/* <Stars /> */}
+          <Stars />
           <ambientLight intensity={2} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
           <SpaceRocket />
