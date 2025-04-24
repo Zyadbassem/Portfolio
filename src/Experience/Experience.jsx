@@ -38,7 +38,7 @@ function Experience() {
           <FirstPhase position={[0, 30, 0]} />
           <SecondPhase position={[0, 70, 0]} />
           <OrbitControls enabled={true} />
-          <Stars />
+          {/* <Stars /> */}
           <ambientLight intensity={2} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
           <SpaceRocket />

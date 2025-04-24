@@ -1,28 +1,41 @@
 import { useGLTF } from "@react-three/drei";
-import { BallCollider, CylinderCollider, RigidBody } from "@react-three/rapier";
+import { CylinderCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
+import { useRef } from "react";
+
+import MeteoriteFlames from "./MeteoriteFlames";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Meteorite() {
   const gltf = useGLTF("/meteorite/meteorite.glb");
-  const { xRot, yRot, zRot } = useControls("Meteorite", {
-    xRot: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
-    yRot: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
-    zRot: { value: 0, min: -Math.PI, max: Math.PI, step: 0.01 },
+  const rigidBodyRef = useRef();
+
+  /** Flames for the meteorite */
+  const { countHolder, maxWidth, maxHeight, maxDepth } = useControls("Flame", {
+    countHolder: { value: 700, min: 100, max: 10000 },
+    maxWidth: { value: 0.5, min: 0.1, max: 4 },
+    maxHeight: { value: 7, min: 0.1, max: 10 },
+    maxDepth: { value: 0.4, min: 0.1, max: 4 },
   });
 
   return (
-    <RigidBody colliders={false}>
+    <RigidBody ref={rigidBodyRef} colliders={false}>
       <group>
         <primitive
           object={gltf.scene}
           scale={0.3}
           rotation={[0, 0, Math.PI * 0.25]}
+          visible={true}
         />
-        <mesh visible={true} position={[0.25, 0.25, 0]}>
-          <planeGeometry args={[1]} />
-          <meshStandardMaterial color="red" />
-        </mesh>
+        {/* Remove the static plane and replace with flame system */}
       </group>
+      <MeteoriteFlames
+        countHolder={countHolder}
+        maxWidth={maxWidth}
+        maxHeight={maxHeight}
+        maxDepth={maxDepth}
+      />
       <CylinderCollider args={[0.5, 0.4]} rotation={[0, 0, -0.7]} />
     </RigidBody>
   );
