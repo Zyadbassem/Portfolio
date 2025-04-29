@@ -32,15 +32,15 @@ function SecondPhase({ position = [0, 0, 0] }) {
   ];
   return (
     <group position={position}>
-      <SkillsText />
+      {/* <SkillsText />
       {skills.map((skill, index) => (
         <Skill
           key={index}
           position={skill.position}
           texture={skill.textureUrl}
         />
-      ))}
-      <Meteorites position={[10, 0, 0]} />
+      ))} */}
+      <Meteorites position={[10, 10, 0]} />
       <Moon position={[-10, -10, -20]} />
     </group>
   );

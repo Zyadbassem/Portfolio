@@ -11,6 +11,7 @@ function MeteoriteFlames({
   position = [0, 0, 0],
   rotation = [0, 0, 0],
   initialImpulse = 1,
+  secRot = [0, 0, 0],
 }) {
   const pointsRef = useRef();
   const geometry = useMemo(() => {
@@ -42,11 +43,11 @@ function MeteoriteFlames({
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute(
       "position",
-      new THREE.BufferAttribute(positionArray, 3),
+      new THREE.BufferAttribute(positionArray, 3)
     );
     geometry.setAttribute(
       "velocity",
-      new THREE.BufferAttribute(velocityArray, 1),
+      new THREE.BufferAttribute(velocityArray, 1)
     );
     geometry.setAttribute("life", new THREE.BufferAttribute(lifeArray, 1));
     geometry.setAttribute("color", new THREE.BufferAttribute(colorArray, 3));
@@ -59,25 +60,39 @@ function MeteoriteFlames({
       uniform float impluse;
       attribute float life;
       varying vec3 vColor;
+      varying vec3 vPosition;
       void main() {
         vec3 pos = position;
-        vec3 startColor = vec3(1.0, 0, 0);  // Orange-red
-        vec3 endColor = vec3(0.1, 0.4, 0.8);     // Light blue
-        vec3 baseColor = mix(startColor, endColor, impluse);
+        vec3 startColor = vec3(1.0, 0, 0);
+        vec3 endColor = vec3(0.1, 0.4, 0.8);
+        vec3 baseColor = mix(startColor, endColor, impluse * 0.8);
         vec3 color = baseColor * life;
         vColor = color;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
         gl_PointSize = 10.0 * life;
+        vPosition = position;
       }
     `;
     const fragmentShader = `
       varying vec3 vColor;
+      varying vec3 vPosition;
       void main() {
         float dist = length(gl_PointCoord - vec2(0.5));
         if (dist > 0.5) discard;
         gl_FragColor = vec4(vColor, 1.0 - dist); // Alpha fades towards edges
       }
     `;
+    const newFragmentShader = `
+      varying vec3 vPosition;
+      void main() {
+        vec3 pos = vPosition;
+        vec3 color = vec3(0.8, 0.3, 0.1); // Base color
+        float dist = length(gl_PointCoord - vec2(0.7));
+        float alpha = 1.0 - dist * 2.0; // Alpha fades towards edges
+        if (dist > 0.5) discard; // Discard pixels outside the circle
+        gl_FragColor = vec4(color, alpha);
+      }
+      `;
     return new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,

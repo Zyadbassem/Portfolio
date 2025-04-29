@@ -28,7 +28,7 @@ function Meteorite({
       maxHeight: { value: 5, min: 0.1, max: 10 },
       maxDepth: { value: 0.4, min: 0.1, max: 4 },
       speed: { value: 0.1, min: 0.01, max: 1 },
-    },
+    }
   );
 
   // Expose the ref to parent component
@@ -70,6 +70,7 @@ function Meteorite({
         position={[1.8, 1.8, 0]}
         rotation={[0, 0, -Math.PI * 0.25]}
         initialImpulse={initialImpulse}
+        secRot={rotation}
       />
       <CylinderCollider args={[0.5, 0.4]} rotation={[0, 0, -0.7]} />
     </RigidBody>

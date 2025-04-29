@@ -68,7 +68,7 @@ function SpaceRocket() {
     } else if (keysPressed.current.ArrowDown) {
       TARGET_VEL.current.y = Math.max(
         TARGET_VEL.current.y - 0.1,
-        -MAX_VELOCITY,
+        -MAX_VELOCITY
       );
     } else {
       TARGET_VEL.current.y = 0;
@@ -77,7 +77,7 @@ function SpaceRocket() {
     if (keysPressed.current.ArrowLeft) {
       TARGET_VEL.current.x = Math.max(
         TARGET_VEL.current.x - 0.03,
-        -MAX_VELOCITY,
+        -MAX_VELOCITY
       );
       // Visual tilt
       spaceRocketRef.current.setRotation({
@@ -89,7 +89,7 @@ function SpaceRocket() {
     } else if (keysPressed.current.ArrowRight) {
       TARGET_VEL.current.x = Math.min(
         TARGET_VEL.current.x + 0.03,
-        MAX_VELOCITY,
+        MAX_VELOCITY
       );
       // Visual tilt
       spaceRocketRef.current.setRotation({
@@ -120,7 +120,7 @@ function SpaceRocket() {
           y: THRUST_FORCE * delta * 60,
           z: 0,
         },
-        true,
+        true
       );
       if (keysPressed.current.ArrowLeft) {
         spaceRocketRef.current.applyImpulse(
@@ -129,7 +129,7 @@ function SpaceRocket() {
             y: 0,
             z: 0,
           },
-          true,
+          true
         );
       } else if (keysPressed.current.ArrowRight) {
         spaceRocketRef.current.applyImpulse(
@@ -138,7 +138,7 @@ function SpaceRocket() {
             y: 0,
             z: 0,
           },
-          true,
+          true
         );
       }
     }
@@ -184,9 +184,9 @@ function SpaceRocket() {
       {/* Flames for the rocket */}
 
       <>
-        <Flame position={[0, -0.05, 0.1]} visible={thrusting} />
-        <Flame position={[0.121, -0.05, 0.2]} visible={thrusting} />
-        <Flame position={[-0.121, -0.05, 0.2]} visible={thrusting} />
+        <Flame position={[0, -0.2, 0.1]} visible={thrusting} />
+        <Flame position={[0.121, -0.2, 0.2]} visible={thrusting} />
+        <Flame position={[-0.121, -0.2, 0.2]} visible={thrusting} />
       </>
     </RigidBody>
   );

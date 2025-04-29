@@ -22,7 +22,7 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
         Math.random() * 5,
         (Math.random() - 0.5) * 10,
       ],
-      rotation: [0, 0, 0],
+      rotation: [0, 0, (Math.random() - 0.5) * 0.15 * Math.PI],
       initialImpulse: Math.random() * 5 + 5,
       key: `meteorite-${id}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
     };
