@@ -1,31 +1,51 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import fragmentShader from "./shaders/flamefragment.glsl";
 import vertexShader from "./shaders/flamevertex.glsl";
 import { useFrame } from "@react-three/fiber";
 
 function Flame({ position = [0, -0.05, 0.1], visible = true }) {
-  const count = 500;
-  const width = 0.05;
-  const height = 0.4;
-  const depth = 0.05;
+  const [speed, setSpeed] = useState(0.0);
+  const [arrowClicked, setArrowClicked] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      e.key === "ArrowUp" && !arrowClicked ? setArrowClicked(true) : null;
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    const handleKeyUp = (e) => {
+      console.log("up");
+      e.key === "ArrowUp" ? setArrowClicked(false) : null;
+    };
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [speed]);
+  const count = 1000;
+  const width = 1;
+  const height = 5;
+  const depth = 1;
   const geometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
-    const speedArr = new Float32Array(count);
+    const speedArray = new Float32Array(count);
     for (let i = 0; i < count; i++) {
       const x = (Math.random() - 0.5) * width;
       const y = (Math.random() - 0.5) * height;
       const z = (Math.random() - 0.5) * depth;
 
-      speedArr[i] = Math.random();
+      speedArray[i] = Math.random();
       positions[i * 3] = x;
       positions[i * 3 + 1] = y;
       positions[i * 3 + 2] = z;
     }
 
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("speed", new THREE.BufferAttribute(speedArr, 1));
+    geometry.setAttribute("speed", new THREE.BufferAttribute(speedArray, 1));
     console.log(geometry);
     return geometry;
   }, [count, width, height, depth]);
@@ -33,6 +53,7 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
     return new THREE.ShaderMaterial({
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
+      blending: THREE.AdditiveBlending,
       uniforms: {
         width: {
           value: width,
@@ -43,6 +64,9 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
         u_time: {
           value: 0.0,
         },
+        u_speed: {
+          value: speed,
+        },
       },
       transparent: true,
     });
@@ -51,14 +75,30 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
   useFrame(({ clock }) => {
     material.uniforms.u_time.value = clock.elapsedTime;
     material.needsUpdate = true;
+
+    const handleSpeed = () => {
+      if (arrowClicked && speed < 10.0) {
+        setSpeed((s) => s + 0.1);
+        console.log(speed);
+      } else if (!arrowClicked && speed > 0) {
+        setSpeed((s) => s - 0.2);
+        console.log(speed);
+      }
+      material.uniforms.u_speed.value = speed;
+    };
+
+    handleSpeed();
   });
   return (
-    <points
-      material={material}
-      geometry={geometry}
-      position={position}
-      rotation={[0, 0, Math.PI]}
-    />
+    <>
+      <points
+        material={material}
+        geometry={geometry}
+        position={position}
+        scale={0.04}
+        rotation={[0, 0, Math.PI]}
+      />
+    </>
   );
 }
 

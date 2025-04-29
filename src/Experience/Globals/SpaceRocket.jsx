@@ -22,7 +22,7 @@ function SpaceRocket() {
    * - ROTATION_AMOUNT: Amount of rotation applied when steering
    * - TARGET_VEL: Target velocity of the rocket
    */
-  const MAX_VELOCITY = 1;
+  const MAX_VELOCITY = 2;
   const THRUST_FORCE = 0.008;
   const STEERING_FORCE = 0.03;
   const ROTATION_AMOUNT = 0.1;
@@ -143,16 +143,16 @@ function SpaceRocket() {
       }
     }
 
-    // camera.position.y = THREE.MathUtils.lerp(
-    //   camera.position.y,
-    //   position.y + 1,
-    //   0.1,
-    // );
-    // camera.position.x = THREE.MathUtils.lerp(
-    //   camera.position.x,
-    //   position.x,
-    //   0.1,
-    // );
+    camera.position.y = THREE.MathUtils.lerp(
+      camera.position.y,
+      position.y + 1,
+      0.1
+    );
+    camera.position.x = THREE.MathUtils.lerp(
+      camera.position.x,
+      position.x,
+      0.1
+    );
   });
 
   return (
@@ -184,9 +184,9 @@ function SpaceRocket() {
       {/* Flames for the rocket */}
 
       <>
-        <Flame position={[0, -0.2, 0.1]} visible={thrusting} />
-        <Flame position={[0.121, -0.2, 0.2]} visible={thrusting} />
-        <Flame position={[-0.121, -0.2, 0.2]} visible={thrusting} />
+        <Flame position={[0, -0.1, 0.1]} visible={thrusting} />
+        <Flame position={[0.121, -0.1, 0.2]} visible={thrusting} />
+        <Flame position={[-0.121, -0.1, 0.2]} visible={thrusting} />
       </>
     </RigidBody>
   );
