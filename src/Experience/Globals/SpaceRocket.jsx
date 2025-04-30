@@ -71,7 +71,9 @@ function SpaceRocket() {
         -MAX_VELOCITY
       );
     } else {
-      TARGET_VEL.current.y = 0;
+      TARGET_VEL.current.y > 0
+        ? (TARGET_VEL.current.y -= 0.01)
+        : (TARGET_VEL.current.y += 0.01);
     }
 
     if (keysPressed.current.ArrowLeft) {

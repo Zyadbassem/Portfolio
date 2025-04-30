@@ -81,7 +81,7 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
         setSpeed((s) => s + 0.1);
         console.log(speed);
       } else if (!arrowClicked && speed > 0) {
-        setSpeed((s) => s - 0.2);
+        setSpeed((s) => s - 0.4);
         console.log(speed);
       }
       material.uniforms.u_speed.value = speed;
