@@ -9,7 +9,7 @@ import {
 function Satellites() {
   const satellitesRef = useRef([]);
   const gltf = useGLTF("/satellites.glb");
-  const count = 15;
+  const count = 7;
   const satellites = useMemo(() => {
     const clonedSatellites = [];
     for (let i = 0; i < count; i++) {

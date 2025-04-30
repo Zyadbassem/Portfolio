@@ -52,7 +52,7 @@ function Welcome() {
     
     void main() {
         vec4 color = texture2D(textureMap, vUv);
-        gl_FragColor = vec4(color.rgb, 1.0);
+        gl_FragColor = vec4(color.rgb, 0.8);
     }
 `;
 
@@ -113,6 +113,7 @@ function Welcome() {
         <shaderMaterial
           vertexShader={vertexShader}
           fragmentShader={fragmentShader}
+          transparent={true}
           uniforms={uniforms}
           side={THREE.DoubleSide}
         />

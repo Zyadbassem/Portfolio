@@ -7,9 +7,9 @@ import Welcome from "./Welcome";
 function Earth() {
   return (
     <>
-      <Grass />
+      {/* <Grass /> */}
       {/* <Sky /> */}
-      <Trees />
+      {/* <Trees /> */}
       <Station />
       <Welcome />
     </>

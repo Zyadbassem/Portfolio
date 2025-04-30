@@ -25,7 +25,7 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [speed]);
-  const count = 1000;
+  const count = 800;
   const width = 1;
   const height = 5;
   const depth = 1;

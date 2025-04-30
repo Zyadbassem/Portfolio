@@ -1,7 +1,6 @@
 import Meteorites from "./Meteorites";
 import Moon from "./Moon";
-import Skill from "./Skill";
-import SkillsText from "./SkillsText";
+import Skills from "./Skills";
 
 function SecondPhase({ position = [0, 0, 0] }) {
   const skills = [
@@ -32,16 +31,9 @@ function SecondPhase({ position = [0, 0, 0] }) {
   ];
   return (
     <group position={position}>
-      {/* <SkillsText />
-      {skills.map((skill, index) => (
-        <Skill
-          key={index}
-          position={skill.position}
-          texture={skill.textureUrl}
-        />
-      ))} */}
       <Meteorites position={[10, 10, 0]} />
-      <Moon position={[-10, -10, -20]} />
+      <Skills position={[-12, -10, -25]} />
+      <Moon position={[10, -10, -25]} />
     </group>
   );
 }
