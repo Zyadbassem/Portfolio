@@ -32,7 +32,7 @@ function Experience() {
       >
         <Stats />
         <Physics gravity={[0, 0, 0]} paused={false} debug={false}>
-          <MagicWalls />
+          {/* <MagicWalls /> */}
           <Earth />
           <Clouds position={[0, 10, 0]} />
           <FirstPhase position={[0, 30, 0]} />
