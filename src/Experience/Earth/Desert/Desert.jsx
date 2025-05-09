@@ -21,7 +21,7 @@ function Desert({ position }) {
   return (
     <RigidBody colliders={false} type="fixed" position={position}>
       <group>
-        <mesh scale={[20, 1, 10]}>
+        <mesh scale={[50, 1, 20]}>
           <boxGeometry
             args={[
               uniforms.width.value,
