@@ -9,8 +9,8 @@ function Stars() {
 
     for (let i = 0; i < count; i++) {
       positions[i * 3 + 0] = (Math.random() - 0.5) * 80;
-      positions[i * 3 + 1] = (Math.random() - 0.2) * 80;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+      positions[i * 3 + 1] = (Math.random() - 0.2) * 200;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
       sizes[i] = Math.random() * 5 + 1;
     }
 

@@ -22,7 +22,7 @@ function SpaceRocket() {
    * - ROTATION_AMOUNT: Amount of rotation applied when steering
    * - TARGET_VEL: Target velocity of the rocket
    */
-  const MAX_VELOCITY = 2;
+  const MAX_VELOCITY = 3;
   const THRUST_FORCE = 0.008;
   const STEERING_FORCE = 0.03;
   const ROTATION_AMOUNT = 0.1;
