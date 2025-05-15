@@ -109,7 +109,7 @@ void main() {
     );
     
     // Generate noise using the wrapped position
-    float noise = 2.0 * pnoise(wrappedPos, vec3(10.0));
+    float noise = 1.5 * pnoise(wrappedPos, vec3(10.0));
     float displacement = noise / 10.0;
     
     // Only displace the Y coordinate

@@ -12,7 +12,7 @@ function Station() {
         <BuildingBlock position={[0.2, 0.1, 0]} />
         <BuildingBlock position={[0.2, 0, 0]} />
       </RigidBody>
-      <RigidBody position={[0, 0, 0.02]} type="fixed">
+      <RigidBody position={[0, 0.05, 0.02]} type="fixed">
         <mesh>
           <cylinderGeometry args={[0.07, 0.1, 0.02, 32]} />
           <meshStandardMaterial color="#afb1be" />

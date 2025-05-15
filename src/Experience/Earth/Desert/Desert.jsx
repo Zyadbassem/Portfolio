@@ -7,9 +7,9 @@ import { useRef } from "react";
 
 function Desert({ position }) {
   const desRef = useRef();
-  useFrame((frame) => {
-    desRef.current.position.x = frame.camera.position.x;
-  });
+  // useFrame((frame) => {
+  //   desRef.current.position.x = frame.camera.position.x;
+  // });
   const uniforms = {
     width: {
       value: 1.0,
