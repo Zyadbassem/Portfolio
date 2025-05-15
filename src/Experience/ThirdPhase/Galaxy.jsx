@@ -23,7 +23,7 @@ function Galaxy({
     insideColor,
     outsideColor,
   } = {
-    count: 40000,
+    count: 100000,
     radius: 11,
     branches: 3,
     spin: spinning,

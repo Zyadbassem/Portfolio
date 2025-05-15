@@ -2,8 +2,14 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import desertFrag from "./desertfrag.glsl";
 import desertver from "./desertver.glsl";
 import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
 function Desert({ position }) {
+  const desRef = useRef();
+  useFrame((frame) => {
+    desRef.current.position.x = frame.camera.position.x;
+  });
   const uniforms = {
     width: {
       value: 1.0,
@@ -19,9 +25,12 @@ function Desert({ position }) {
     },
   };
   return (
-    <RigidBody colliders={false} type="fixed" position={position}>
+    <>
+      <RigidBody colliders={false} type="fixed" position={position}>
+        <CuboidCollider args={[10, 0.1, 5]} />
+      </RigidBody>
       <group>
-        <mesh scale={[50, 1, 20]}>
+        <mesh scale={[15, 1, 10]} ref={desRef}>
           <boxGeometry
             args={[
               uniforms.width.value,
@@ -40,8 +49,7 @@ function Desert({ position }) {
           />
         </mesh>
       </group>
-      <CuboidCollider args={[10, 0.1, 5]} />
-    </RigidBody>
+    </>
   );
 }
 

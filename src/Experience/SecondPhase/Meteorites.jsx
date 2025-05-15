@@ -20,10 +20,10 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
       position: [
         Math.random() * 10 + 5,
         Math.random() * 5,
-        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.1) * -20,
       ],
       rotation: [0, 0, (Math.random() - 0.5) * 0.15 * Math.PI],
-      initialImpulse: Math.random() * 5 + 5,
+      initialImpulse: Math.random() * 10 + 5,
       key: `meteorite-${id}-${Date.now()}-${Math.random()
         .toString(36)
         .substring(2, 9)}`,

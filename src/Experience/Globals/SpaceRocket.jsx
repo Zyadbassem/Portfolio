@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import Flame from "./Flame";
-function SpaceRocket() {
+function SpaceRocket({ cameraFollower = true }) {
   /** Create two refs one for the rocket and another for the current pressed keys  */
   const spaceRocketRef = useRef();
   const keysPressed = useRef({
@@ -145,16 +145,18 @@ function SpaceRocket() {
       }
     }
 
-    camera.position.y = THREE.MathUtils.lerp(
-      camera.position.y,
-      position.y + 1,
-      0.1
-    );
-    camera.position.x = THREE.MathUtils.lerp(
-      camera.position.x,
-      position.x,
-      0.1
-    );
+    if (cameraFollower) {
+      camera.position.y = THREE.MathUtils.lerp(
+        camera.position.y,
+        position.y + 1,
+        0.1
+      );
+      camera.position.x = THREE.MathUtils.lerp(
+        camera.position.x,
+        position.x,
+        0.1
+      );
+    }
   });
 
   return (

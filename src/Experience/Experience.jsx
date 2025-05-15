@@ -40,12 +40,12 @@ function Experience() {
           <Clouds position={[0, 10, 0]} />
           <FirstPhase position={[0, 30, 0]} />
           <SecondPhase position={[0, 70, 0]} />
-          <ThirdPhase position={[0, 90, 0]} />
+          <ThirdPhase position={[0, 85, 0]} />
           <OrbitControls enabled={false} />
           <Stars />
           <ambientLight intensity={0.5} />
-          <directionalLight intensity={1} position={[-10, 20, 10]} />
-          <SpaceRocket />
+          <directionalLight intensity={3} position={[-10, 20, 10]} />
+          <SpaceRocket cameraFollower={true} />
         </Physics>
       </Canvas>
     </>
