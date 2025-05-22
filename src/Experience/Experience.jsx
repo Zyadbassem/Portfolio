@@ -37,7 +37,7 @@ function Experience() {
           {/* <MagicWalls /> */}
           <Background />
           <Earth />
-          <Clouds position={[0, 10, 0]} />
+          {/* <Clouds position={[0, 10, 0]} /> */}
           <FirstPhase position={[0, 30, 0]} />
           <SecondPhase position={[0, 70, 0]} />
           <ThirdPhase position={[0, 85, 0]} />
