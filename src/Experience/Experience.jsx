@@ -13,6 +13,7 @@ import SecondPhase from "./SecondPhase/SecondPhase";
 import Clouds from "./Globals/Clouds";
 import Background from "./Background/Background";
 import ThirdPhase from "./ThirdPhase/ThirdPhase";
+import FourthPhase from "./FourthPhase/FourthPhase";
 function Experience() {
   return (
     <>
@@ -41,6 +42,7 @@ function Experience() {
           <FirstPhase position={[0, 30, 0]} />
           <SecondPhase position={[0, 70, 0]} />
           <ThirdPhase position={[0, 85, 0]} />
+          <FourthPhase position={[0, 110, 0]} />
           <OrbitControls enabled={false} />
           <Stars />
           <ambientLight intensity={0.5} />

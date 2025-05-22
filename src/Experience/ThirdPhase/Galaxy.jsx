@@ -12,6 +12,11 @@ function Galaxy({
   inColor = "#fff",
   outColor = "#000",
   spinning = 1,
+  countp = 100000,
+  radiusp = 3,
+  randomnessp = 10,
+  branchesp = 3,
+  blackHole = false,
 }) {
   const galaxyRef = useRef();
   const {
@@ -23,11 +28,11 @@ function Galaxy({
     insideColor,
     outsideColor,
   } = {
-    count: 100000,
-    radius: 11,
-    branches: 3,
+    count: countp,
+    radius: radiusp,
+    branches: branchesp,
     spin: spinning,
-    randomnessPow: 5,
+    randomnessPow: randomnessp,
     insideColor: inColor,
     outsideColor: outColor,
   };
@@ -53,8 +58,11 @@ function Galaxy({
 
       const randomX =
         Math.pow(Math.random(), randomnessPow) * (Math.random() < 0.5 ? -1 : 1);
-      const randomY =
-        Math.pow(Math.random(), randomnessPow) * (Math.random() < 0.5 ? -1 : 1);
+      const randomY = blackHole
+        ? 0
+        : Math.pow(Math.random(), randomnessPow) *
+          (Math.random() < 0.5 ? -1 : 1);
+
       const randomZ =
         Math.pow(Math.random(), randomnessPow) * (Math.random() < 0.5 ? -1 : 1);
 

@@ -10,6 +10,8 @@ function ThirdPhase({ position = [0, 0, 0] }) {
         rotation={[Math.PI * 0.15, -Math.PI * 0.15, 0]}
         inColor="#0045ff"
         outColor="#f802ee"
+        spinning={1.5}
+        radiusp={11}
       />
       <Certificates position={[12, 0, -30]} />
     </group>
