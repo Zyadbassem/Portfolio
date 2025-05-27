@@ -27,6 +27,9 @@ function SpaceRocket({ cameraFollower = true }) {
   const STEERING_FORCE = 0.03;
   const ROTATION_AMOUNT = 0.1;
   const TARGET_VEL = useRef({ x: 0, y: 0 });
+  const BLACK_HOLE_X = 15;
+  const BLACK_HOLE_Y = 114.5;
+  const MAX_ATTRACTION_DISTANCE = 20;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -58,9 +61,31 @@ function SpaceRocket({ cameraFollower = true }) {
     };
   }, []);
 
+  const calculateBlackHoleForce = (rocketX, rocketY) => {
+    // Get how far is the rocket from the the black hole
+    const farX = BLACK_HOLE_X - rocketX;
+    const farY = BLACK_HOLE_Y - rocketY;
+    const dis = Math.sqrt(farX ** 2 + farY ** 2);
+
+    // If the rocket is close > 1.5 or is so far
+    if (dis < 1 || dis > MAX_ATTRACTION_DISTANCE) {
+      return { x: 0, y: 0 };
+    }
+
+    const disX = farX / MAX_ATTRACTION_DISTANCE;
+    const disY = farY / MAX_ATTRACTION_DISTANCE;
+
+    const converX = disX > 0 ? 1 - disX : -1 - disX;
+    const converY = disY > 0 ? 1 - disY : -1 - disY;
+
+    const outX = converX / MAX_ATTRACTION_DISTANCE;
+    const outY = converY / MAX_ATTRACTION_DISTANCE;
+
+    return { x: outX, y: outY };
+  };
+
   useFrame(({ camera }, delta) => {
     if (!spaceRocketRef.current) return;
-
     const currentVel = spaceRocketRef.current.linvel();
     const position = spaceRocketRef.current.translation();
 
@@ -77,24 +102,23 @@ function SpaceRocket({ cameraFollower = true }) {
         : (TARGET_VEL.current.y += 0.01);
     }
 
-    /** Black hole effect */
-    //x: 15 y: 113 y > 90
-    const { x, y } = spaceRocketRef.current.translation();
+    /**
+     *  Black hole effect
+     **/
 
-    if (!keysPressed.current.ArrowDown && !keysPressed.current.ArrowUp) {
-      if (y > 90 && y < 113) {
-        TARGET_VEL.current.y = Math.min(
-          TARGET_VEL.current.y + 0.05,
-          2 * MAX_VELOCITY
-        );
-      } else if (y > 90 && y > 113) {
-        TARGET_VEL.current.y = Math.max(
-          TARGET_VEL.current.y - 0.05,
-          -2 * MAX_VELOCITY
-        );
-      } else if (Math.round(y) === 90) {
-        TARGET_VEL.current.y = 0;
-      }
+    const { x, y } = calculateBlackHoleForce(position.x, position.y);
+    if (Math.abs(x) > 0 || Math.abs(y) > 0) {
+      let posX =
+        x > 0
+          ? Math.min(TARGET_VEL.current.x + x, MAX_VELOCITY * 2)
+          : Math.max(TARGET_VEL.current.x + x, -MAX_VELOCITY * 2);
+      let posY =
+        y > 0
+          ? Math.min(TARGET_VEL.current.y + y, MAX_VELOCITY * 2)
+          : Math.max(TARGET_VEL.current.y + y, -MAX_VELOCITY * 2);
+
+      TARGET_VEL.current.x = posX;
+      TARGET_VEL.current.y = posY;
     }
 
     if (keysPressed.current.ArrowLeft) {
@@ -127,8 +151,7 @@ function SpaceRocket({ cameraFollower = true }) {
     }
 
     // Smooth interpolation between current and target velocity
-    const lerpFactor = Math.min(1.0, delta * 10); // Adjust for desired smoothness
-
+    const lerpFactor = Math.min(1, delta * 10);
     const smoothedVel = {
       x: THREE.MathUtils.lerp(currentVel.x, TARGET_VEL.current.x, lerpFactor),
       y: THREE.MathUtils.lerp(currentVel.y, TARGET_VEL.current.y, lerpFactor),
