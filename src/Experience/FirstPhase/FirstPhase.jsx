@@ -7,8 +7,8 @@ function FirstPhase({ position = [0, 0, 0] }) {
     <>
       <group position={position}>
         <Satellites />
-        <ArrowAndText text={`Projects => `} position={[-12, 10, -25]} />
-        <Projects position={[8, 10, -20]} />
+        <ArrowAndText text={`Projects => `} position={[-1, 10, -25]} />
+        <Projects position={[10, 10, -20]} />
       </group>
     </>
   );

@@ -63,6 +63,7 @@ function SpaceRocket({ cameraFollower = true }) {
 
     const currentVel = spaceRocketRef.current.linvel();
     const position = spaceRocketRef.current.translation();
+
     if (keysPressed.current.ArrowUp) {
       TARGET_VEL.current.y = Math.min(TARGET_VEL.current.y + 0.1, MAX_VELOCITY);
     } else if (keysPressed.current.ArrowDown) {
@@ -74,6 +75,26 @@ function SpaceRocket({ cameraFollower = true }) {
       TARGET_VEL.current.y > 0
         ? (TARGET_VEL.current.y -= 0.01)
         : (TARGET_VEL.current.y += 0.01);
+    }
+
+    /** Black hole effect */
+    //x: 15 y: 113 y > 90
+    const { x, y } = spaceRocketRef.current.translation();
+
+    if (!keysPressed.current.ArrowDown && !keysPressed.current.ArrowUp) {
+      if (y > 90 && y < 113) {
+        TARGET_VEL.current.y = Math.min(
+          TARGET_VEL.current.y + 0.05,
+          2 * MAX_VELOCITY
+        );
+      } else if (y > 90 && y > 113) {
+        TARGET_VEL.current.y = Math.max(
+          TARGET_VEL.current.y - 0.05,
+          -2 * MAX_VELOCITY
+        );
+      } else if (Math.round(y) === 90) {
+        TARGET_VEL.current.y = 0;
+      }
     }
 
     if (keysPressed.current.ArrowLeft) {

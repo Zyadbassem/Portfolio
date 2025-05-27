@@ -32,8 +32,8 @@ function SecondPhase({ position = [0, 0, 0] }) {
   return (
     <group position={position}>
       <Meteorites position={[10, 10, 0]} count={5} />
-      <Skills position={[-12, -10, -30]} />
-      <Moon position={[10, -10, -25]} />
+      <Skills position={[-10, -10, -30]} />
+      <Moon position={[13, -10, -25]} />
     </group>
   );
 }
