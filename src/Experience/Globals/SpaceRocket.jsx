@@ -31,9 +31,9 @@ function SpaceRocket({ cameraFollower = true }) {
   const STEERING_FORCE = 0.03;
   const ROTATION_AMOUNT = 0.1;
   const TARGET_VEL = useRef({ x: 0, y: 0 });
-  const BLACK_HOLE_X = 15;
-  const BLACK_HOLE_Y = 114.5;
-  const MAX_ATTRACTION_DISTANCE = 25;
+  const BLACK_HOLE_X = 0;
+  const BLACK_HOLE_Y = 110;
+  const MAX_ATTRACTION_DISTANCE = 15;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -104,18 +104,22 @@ function SpaceRocket({ cameraFollower = true }) {
     const dis = Math.sqrt(farX ** 2 + farY ** 2);
 
     // If the rocket is close > 1.5 or is so far
-    if (dis < 1 || dis > MAX_ATTRACTION_DISTANCE) {
+    if (dis < 0.5 || dis > MAX_ATTRACTION_DISTANCE) {
       return { x: 0, y: 0 };
     }
 
     const disX = farX / MAX_ATTRACTION_DISTANCE;
     const disY = farY / MAX_ATTRACTION_DISTANCE;
 
-    const converX = disX > 0 ? 1 - disX : -1 - disX;
-    const converY = disY > 0 ? 1 - disY : -1 - disY;
+    const converX = disX > 0 ? 1 : -1;
+    const converY = disY > 0 ? 1 : -1;
 
-    const outX = (converX / MAX_ATTRACTION_DISTANCE) * 3.5;
-    const outY = (converY / MAX_ATTRACTION_DISTANCE) * 3.5;
+    const outX =
+      (((MAX_ATTRACTION_DISTANCE - dis) * converX) / MAX_ATTRACTION_DISTANCE) *
+      0.15;
+    const outY =
+      (((MAX_ATTRACTION_DISTANCE - dis) * converY) / MAX_ATTRACTION_DISTANCE) *
+      0.15;
 
     if (Math.abs(farX) < 1 && Math.abs(farY > 1)) return { x: 0, y: outY };
     else if (Math.abs(farX) > 1 && Math.abs(farY) < 1) return { x: outX, y: 0 };
