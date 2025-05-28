@@ -9,9 +9,13 @@ function SpaceRocket({ cameraFollower = true }) {
   const spaceRocketRef = useRef();
   const keysPressed = useRef({
     ArrowUp: false,
+    w: false,
     ArrowLeft: false,
+    d: false,
     ArrowRight: false,
+    a: false,
     ArrowDown: false,
+    s: false,
   });
   const [thrusting, setThrusting] = useState(false);
 
@@ -29,27 +33,59 @@ function SpaceRocket({ cameraFollower = true }) {
   const TARGET_VEL = useRef({ x: 0, y: 0 });
   const BLACK_HOLE_X = 15;
   const BLACK_HOLE_Y = 114.5;
-  const MAX_ATTRACTION_DISTANCE = 20;
+  const MAX_ATTRACTION_DISTANCE = 25;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"].includes(e.key)) {
+      if (
+        [
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowDown",
+          "w",
+          "a",
+          "d",
+          "s",
+        ].includes(e.key)
+      ) {
         keysPressed.current[e.key] = true;
       }
-      if (e.key === "ArrowUp") setThrusting(true);
+      console.log(e.key);
+      if (e.key === "ArrowUp" || e.key === "w") {
+        setThrusting(true);
+        console.log("trusting");
+      }
     };
 
     const handleKeyUp = (e) => {
-      if (["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"].includes(e.key)) {
+      if (
+        [
+          "ArrowUp",
+          "ArrowLeft",
+          "ArrowRight",
+          "ArrowDown",
+          "w",
+          "a",
+          "d",
+          "s",
+        ].includes(e.key)
+      ) {
         keysPressed.current[e.key] = false;
         if (
-          (e.key === "ArrowLeft" || e.key === "ArrowRight") &&
+          (e.key === "ArrowLeft" ||
+            e.key === "ArrowRight" ||
+            e.key === "a" ||
+            e.key === "d") &&
           spaceRocketRef.current
         ) {
           spaceRocketRef.current.setRotation({ x: 0, y: 0, z: 0, w: 1 });
         }
       }
-      if (e.key === "ArrowUp") setThrusting(false);
+      if (e.key === "ArrowUp" || e.key === "w") {
+        setThrusting(false);
+        console.log("Thrusting set to false");
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -78,10 +114,17 @@ function SpaceRocket({ cameraFollower = true }) {
     const converX = disX > 0 ? 1 - disX : -1 - disX;
     const converY = disY > 0 ? 1 - disY : -1 - disY;
 
-    const outX = converX / MAX_ATTRACTION_DISTANCE;
-    const outY = converY / MAX_ATTRACTION_DISTANCE;
+    const outX = (converX / MAX_ATTRACTION_DISTANCE) * 3.5;
+    const outY = (converY / MAX_ATTRACTION_DISTANCE) * 3.5;
 
-    return { x: outX, y: outY };
+    if (Math.abs(farX) < 1 && Math.abs(farY > 1)) return { x: 0, y: outY };
+    else if (Math.abs(farX) > 1 && Math.abs(farY) < 1) return { x: outX, y: 0 };
+    else if (
+      Math.abs(farX) > MAX_ATTRACTION_DISTANCE ||
+      Math.abs(farY) > MAX_ATTRACTION_DISTANCE
+    )
+      return { x: 0, y: 0 };
+    else return { x: outX, y: outY };
   };
 
   useFrame(({ camera }, delta) => {
@@ -89,9 +132,9 @@ function SpaceRocket({ cameraFollower = true }) {
     const currentVel = spaceRocketRef.current.linvel();
     const position = spaceRocketRef.current.translation();
 
-    if (keysPressed.current.ArrowUp) {
+    if (keysPressed.current.ArrowUp || keysPressed.current.w) {
       TARGET_VEL.current.y = Math.min(TARGET_VEL.current.y + 0.1, MAX_VELOCITY);
-    } else if (keysPressed.current.ArrowDown) {
+    } else if (keysPressed.current.ArrowDown || keysPressed.current.s) {
       TARGET_VEL.current.y = Math.max(
         TARGET_VEL.current.y - 0.1,
         -MAX_VELOCITY
@@ -107,11 +150,12 @@ function SpaceRocket({ cameraFollower = true }) {
      **/
 
     const { x, y } = calculateBlackHoleForce(position.x, position.y);
+
     if (Math.abs(x) > 0 || Math.abs(y) > 0) {
       let posX =
         x > 0
-          ? Math.min(TARGET_VEL.current.x + x, MAX_VELOCITY * 2)
-          : Math.max(TARGET_VEL.current.x + x, -MAX_VELOCITY * 2);
+          ? Math.min(TARGET_VEL.current.x + x, MAX_VELOCITY * 3)
+          : Math.max(TARGET_VEL.current.x + x, -MAX_VELOCITY * 3);
       let posY =
         y > 0
           ? Math.min(TARGET_VEL.current.y + y, MAX_VELOCITY * 2)
@@ -121,7 +165,7 @@ function SpaceRocket({ cameraFollower = true }) {
       TARGET_VEL.current.y = posY;
     }
 
-    if (keysPressed.current.ArrowLeft) {
+    if (keysPressed.current.ArrowLeft || keysPressed.current.a) {
       TARGET_VEL.current.x = Math.max(
         TARGET_VEL.current.x - 0.03,
         -MAX_VELOCITY
@@ -133,7 +177,7 @@ function SpaceRocket({ cameraFollower = true }) {
         z: ROTATION_AMOUNT,
         w: 1,
       });
-    } else if (keysPressed.current.ArrowRight) {
+    } else if (keysPressed.current.ArrowRight || keysPressed.current.d) {
       TARGET_VEL.current.x = Math.min(
         TARGET_VEL.current.x + 0.03,
         MAX_VELOCITY
@@ -151,7 +195,7 @@ function SpaceRocket({ cameraFollower = true }) {
     }
 
     // Smooth interpolation between current and target velocity
-    const lerpFactor = Math.min(1, delta * 10);
+    const lerpFactor = Math.min(0.7, delta * 10);
     const smoothedVel = {
       x: THREE.MathUtils.lerp(currentVel.x, TARGET_VEL.current.x, lerpFactor),
       y: THREE.MathUtils.lerp(currentVel.y, TARGET_VEL.current.y, lerpFactor),
@@ -159,7 +203,7 @@ function SpaceRocket({ cameraFollower = true }) {
     };
 
     spaceRocketRef.current.setLinvel(smoothedVel, true);
-    if (keysPressed.current.ArrowUp) {
+    if (keysPressed.current.ArrowUp || keysPressed.current.w) {
       spaceRocketRef.current.applyImpulse(
         {
           x: 0,
@@ -168,7 +212,7 @@ function SpaceRocket({ cameraFollower = true }) {
         },
         true
       );
-      if (keysPressed.current.ArrowLeft) {
+      if (keysPressed.current.ArrowLeft || keysPressed.current.a) {
         spaceRocketRef.current.applyImpulse(
           {
             x: -STEERING_FORCE * delta * 60,
@@ -177,7 +221,7 @@ function SpaceRocket({ cameraFollower = true }) {
           },
           true
         );
-      } else if (keysPressed.current.ArrowRight) {
+      } else if (keysPressed.current.ArrowRight || keysPressed.current.d) {
         spaceRocketRef.current.applyImpulse(
           {
             x: STEERING_FORCE * delta * 60,

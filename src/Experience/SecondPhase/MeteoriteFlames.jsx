@@ -3,7 +3,7 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 
 function MeteoriteFlames({
-  countHolder = 1000,
+  countHolder = 500,
   maxWidth = 1,
   maxHeight = 1,
   maxDepth = 1,
@@ -82,17 +82,7 @@ function MeteoriteFlames({
         gl_FragColor = vec4(vColor, 1.0 - dist); // Alpha fades towards edges
       }
     `;
-    const newFragmentShader = `
-      varying vec3 vPosition;
-      void main() {
-        vec3 pos = vPosition;
-        vec3 color = vec3(0.8, 0.3, 0.1); // Base color
-        float dist = length(gl_PointCoord - vec2(0.7));
-        float alpha = 1.0 - dist * 2.0; // Alpha fades towards edges
-        if (dist > 0.5) discard; // Discard pixels outside the circle
-        gl_FragColor = vec4(color, alpha);
-      }
-      `;
+
     return new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,

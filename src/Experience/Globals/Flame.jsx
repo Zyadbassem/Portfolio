@@ -10,14 +10,17 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      e.key === "ArrowUp" && !arrowClicked ? setArrowClicked(true) : null;
+      e.key === "ArrowUp" || (e.key === "w" && !arrowClicked)
+        ? setArrowClicked(true)
+        : null;
     };
+
     window.addEventListener("keydown", handleKeyDown);
 
     const handleKeyUp = (e) => {
-      console.log("up");
-      e.key === "ArrowUp" ? setArrowClicked(false) : null;
+      e.key === "ArrowUp" || e.key === "w" ? setArrowClicked(false) : null;
     };
+
     window.addEventListener("keyup", handleKeyUp);
 
     return () => {

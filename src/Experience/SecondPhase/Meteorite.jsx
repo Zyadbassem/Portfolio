@@ -20,16 +20,13 @@ function Meteorite({
   const rigidBodyRef = useRef();
 
   /** FLAMES CONTROLLER */
-  const { countHolder, maxWidth, maxHeight, maxDepth, speed } = useControls(
-    "Flame",
-    {
-      countHolder: { value: 3000, min: 100, max: 10000 },
-      maxWidth: { value: 0.5, min: 0.1, max: 4 },
-      maxHeight: { value: 5, min: 0.1, max: 10 },
-      maxDepth: { value: 0.4, min: 0.1, max: 4 },
-      speed: { value: 0.1, min: 0.01, max: 1 },
-    }
-  );
+  const { countHolder, maxWidth, maxHeight, maxDepth, speed } = {
+    countHolder: 1000,
+    maxWidth: 0.5,
+    maxHeight: 5,
+    maxDepth: 0.4,
+    speed: 0.1,
+  };
 
   // Expose the ref to parent component
   useEffect(() => {
