@@ -18,7 +18,7 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
     return {
       id: id,
       position: [
-        Math.random() * 10 + 5,
+        Math.random() * 10 + 10,
         Math.random() * 5,
         Math.random() + 0.5 * -30,
       ],
@@ -36,7 +36,7 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
       let updated = false;
       const newMeteorites = currentMeteorites.map((meteorite) => {
         const currentY = meteorite.ref?.current?.translation()?.y;
-        if (currentY !== undefined && currentY < 30) {
+        if (currentY !== undefined && currentY < 20) {
           updated = true;
           return createNewMeteorite(meteorite.id);
         }

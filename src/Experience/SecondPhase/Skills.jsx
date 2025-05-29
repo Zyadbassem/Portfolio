@@ -2,7 +2,7 @@ import { Html } from "@react-three/drei";
 
 function Skills({ position = [0, 0, 0] }) {
   return (
-    <Html transform position={position}>
+    <Html transform position={position} raycast={false}>
       <div
         style={{
           width: "500px",

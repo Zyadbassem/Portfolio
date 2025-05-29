@@ -43,11 +43,11 @@ function Experience() {
           <SecondPhase position={[0, 70, 0]} />
           <ThirdPhase position={[0, 85, 0]} />
           <FourthPhase position={[0, 110, 0]} />
-          <OrbitControls enabled={false} />
+          <OrbitControls enabled={true} />
           <Stars />
           <ambientLight intensity={0.5} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
-          <SpaceRocket cameraFollower={true} />
+          <SpaceRocket cameraFollower={false} />
         </Physics>
       </Canvas>
     </>
