@@ -20,7 +20,7 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
       position: [
         Math.random() * 10 + 10,
         Math.random() * 5,
-        Math.random() + 0.5 * -30,
+        Math.random() * -30,
       ],
       rotation: [0, 0, (Math.random() - 0.5) * 0.15 * Math.PI],
       initialImpulse: Math.random() * 10 + 5,

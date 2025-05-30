@@ -34,7 +34,7 @@ function Experience() {
         }}
       >
         <Stats />
-        <Physics gravity={[0, 0, 0]} paused={false} debug={true}>
+        <Physics gravity={[0, 0, 0]} paused={false} debug={false}>
           <MagicWalls />
           <Background />
           <Earth />
@@ -43,11 +43,11 @@ function Experience() {
           <SecondPhase position={[0, 70, 0]} />
           <ThirdPhase position={[0, 85, 0]} />
           <FourthPhase position={[0, 110, 0]} />
-          <OrbitControls enabled={true} />
+          <OrbitControls enabled={false} />
           <Stars />
           <ambientLight intensity={0.5} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
-          <SpaceRocket cameraFollower={false} />
+          <SpaceRocket cameraFollower={true} />
         </Physics>
       </Canvas>
     </>

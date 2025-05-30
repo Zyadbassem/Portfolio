@@ -7,6 +7,7 @@ import Flame from "./Flame";
 function SpaceRocket({ cameraFollower = true }) {
   /** Create two refs one for the rocket and another for the current pressed keys  */
   const spaceRocketRef = useRef();
+  const [blackHoleActive, setBlackHoleActive] = useState(false);
   const keysPressed = useRef({
     ArrowUp: false,
     w: false,
@@ -51,10 +52,12 @@ function SpaceRocket({ cameraFollower = true }) {
       ) {
         keysPressed.current[e.key] = true;
       }
-      console.log(e.key);
+
       if (e.key === "ArrowUp" || e.key === "w") {
         setThrusting(true);
-        console.log("trusting");
+      } else if (e.key === "h") {
+        console.log("hhhh");
+        setBlackHoleActive((prev) => !prev);
       }
     };
 
@@ -104,7 +107,7 @@ function SpaceRocket({ cameraFollower = true }) {
     const dis = Math.sqrt(farX ** 2 + farY ** 2);
 
     // If the rocket is close > 1.5 or is so far
-    if (dis < 0.5 || dis > MAX_ATTRACTION_DISTANCE) {
+    if (dis < 0.5 || dis > MAX_ATTRACTION_DISTANCE || !blackHoleActive) {
       return { x: 0, y: 0 };
     }
 
@@ -116,10 +119,10 @@ function SpaceRocket({ cameraFollower = true }) {
 
     const outX =
       (((MAX_ATTRACTION_DISTANCE - dis) * converX) / MAX_ATTRACTION_DISTANCE) *
-      0.15;
+      0.2;
     const outY =
       (((MAX_ATTRACTION_DISTANCE - dis) * converY) / MAX_ATTRACTION_DISTANCE) *
-      0.15;
+      0.2;
 
     if (Math.abs(farX) < 1 && Math.abs(farY > 1)) return { x: 0, y: outY };
     else if (Math.abs(farX) > 1 && Math.abs(farY) < 1) return { x: outX, y: 0 };
