@@ -7,7 +7,11 @@ function ThirdPhase({ position = [0, 0, 0], mobile }) {
       <Galaxy
         position={mobile ? [-8, -10, -50] : [-10, 0, -40]}
         scale={mobile ? [0.8, 0.8, 0.8] : [1, 1, 1]}
-        rotation={[Math.PI * 0.25, -Math.PI * 0.15, 0]}
+        rotation={
+          mobile
+            ? [Math.PI * 0.25, -Math.PI * 0.15, 0]
+            : [Math.PI * 0.15, -Math.PI * 0.15, 0]
+        }
         inColor="#0045ff"
         outColor="#f802ee"
         spinning={1.5}
