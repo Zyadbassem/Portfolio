@@ -3,7 +3,11 @@ import * as THREE from "three";
 import blackholever from "./blackholever.glsl";
 import blackholefrag from "./blackholefrag.glsl";
 import Galaxy from "../../ThirdPhase/Galaxy";
-function BlackHole({ position = [0, 0, 0], scale = [1, 1, 1] }) {
+function BlackHole({
+  position = [0, 0, 0],
+  scale = [1, 1, 1],
+  mobile = false,
+}) {
   const radius = 1;
   const geometry = new THREE.CircleGeometry(radius, 54);
 
@@ -24,7 +28,7 @@ function BlackHole({ position = [0, 0, 0], scale = [1, 1, 1] }) {
       <mesh geometry={geometry} material={material} position={[0, 0, 0]} />
       <Galaxy
         rotation={[0.5 * Math.PI, 0, 0]}
-        countp={1000000}
+        countp={mobile ? 100000 : 500000}
         radiusp={1}
         branchesp={3}
         spinning={4.62}

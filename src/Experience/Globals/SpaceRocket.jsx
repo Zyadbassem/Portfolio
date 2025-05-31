@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import Flame from "./Flame";
-function SpaceRocket({ cameraFollower = true }) {
+function SpaceRocket({ cameraFollower = true, mobile = false }) {
   /** Create two refs one for the rocket and another for the current pressed keys  */
   const spaceRocketRef = useRef();
-  const [blackHoleActive, setBlackHoleActive] = useState(false);
+  const [blackHoleActive, setBlackHoleActive] = useState(true);
   const keysPressed = useRef({
     ArrowUp: false,
     w: false,
@@ -32,7 +32,7 @@ function SpaceRocket({ cameraFollower = true }) {
   const STEERING_FORCE = 0.03;
   const ROTATION_AMOUNT = 0.1;
   const TARGET_VEL = useRef({ x: 0, y: 0 });
-  const BLACK_HOLE_X = 4;
+  const BLACK_HOLE_X = mobile ? 0 : 4;
   const BLACK_HOLE_Y = 110;
   const MAX_ATTRACTION_DISTANCE = 15;
 
@@ -123,16 +123,23 @@ function SpaceRocket({ cameraFollower = true }) {
       }
     };
 
+    const toggleTheHole = () => {
+      console.log("toggling");
+      setBlackHoleActive((prev) => !prev);
+    };
+
     window.addEventListener("controllerDown", handleControllersDown);
     window.addEventListener("controllerUp", handleControllersUp);
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("toggleTheHole", toggleTheHole);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("controllerDown", handleControllersDown);
       window.removeEventListener("controllerUp", handleControllersUp);
+      window.removeEventListener("toggleTheHole", toggleTheHole);
     };
   }, []);
 

@@ -10,17 +10,18 @@ app`,
   techImage2 = "jslogo.png",
   techImage3 = "threelogo.png",
   techImage4 = "htmllogo.png",
+  mobile = false,
 }) {
   return (
     <a
       href={link}
       target="_blank"
       style={{
-        padding: "10px",
+        padding: mobile ? "5px" : "10px",
         display: "flex",
         justifyContent: "start",
-        width: "450px",
-        height: "90px",
+        width: mobile ? "fit-content" : "450px",
+        height: mobile ? "100px" : "90px",
         gap: "10px",
         alignItems: "center",
         textDecoration: "none",
@@ -39,15 +40,19 @@ app`,
       <img
         src={`/project_assets/${mainImg}`}
         style={{
-          width: "140px",
-          height: "75px",
+          width: mobile ? "100px" : "140px",
+          height: mobile ? "50px" : "75px",
           borderRadius: "5px",
           border: "#5DF2FF 1px solid",
         }}
       />
       <div style={{ color: "white", margin: "2px", maxWidth: "150px" }}>
-        <h2 style={{ fontWeight: "bold", fontSize: "10px" }}>{title}</h2>
-        <p style={{ fontWeight: "lighter", fontSize: "8px" }}>{description}</p>
+        <h2 style={{ fontWeight: "bold", fontSize: mobile ? "8px" : "10px" }}>
+          {title}
+        </h2>
+        <p style={{ fontWeight: "lighter", fontSize: mobile ? "6px" : "8px" }}>
+          {description}
+        </p>
       </div>
       <div
         style={{
@@ -62,21 +67,37 @@ app`,
         <div>
           <img
             src={`/project_assets/logos/${techImage1}`}
-            style={{ width: "35px", hweight: "25px", margin: "5px" }}
+            style={{
+              width: mobile ? "25px" : "35px",
+              height: mobile ? "15px" : "25px",
+              margin: "5px",
+            }}
           />
           <img
             src={`/project_assets/logos/${techImage2}`}
-            style={{ width: "35px", hweight: "25px", margin: "5px" }}
+            style={{
+              width: mobile ? "25px" : "35px",
+              height: mobile ? "15px" : "25px",
+              margin: "5px",
+            }}
           />
         </div>
         <div>
           <img
             src={`/project_assets/logos/${techImage3}`}
-            style={{ width: "35px", hweight: "25px", margin: "5px" }}
+            style={{
+              width: mobile ? "25px" : "35px",
+              height: mobile ? "15px" : "25px",
+              margin: "5px",
+            }}
           />
           <img
             src={`/project_assets/logos/${techImage4}`}
-            style={{ width: "35px", hweight: "25px", margin: "5px" }}
+            style={{
+              width: mobile ? "25px" : "35px",
+              height: mobile ? "15px" : "25px",
+              margin: "5px",
+            }}
           />
         </div>
       </div>

@@ -6,14 +6,14 @@ import {
   CylinderCollider,
   RigidBody,
 } from "@react-three/rapier";
-function Satellites() {
+function Satellites({ mobile = false }) {
   const satellitesRef = useRef([]);
   const gltf = useGLTF("/satellites.glb");
   const count = 7;
   const satellites = useMemo(() => {
     const clonedSatellites = [];
     for (let i = 0; i < count; i++) {
-      const width = 15;
+      const width = mobile ? 5 : 15;
       const height = 10;
       const randomX = (Math.random() - 0.5) * width;
       const randomY = (Math.random() - 0.5) * height;
@@ -48,8 +48,13 @@ function Satellites() {
           ref={(satelliteRef) => {
             satellitesRef.current[index] = satelliteRef;
           }}
+          lockTranslations={[false, false, true]}
         >
-          <primitive key={index} object={satellite.clone} scale={0.15} />
+          <primitive
+            key={index}
+            object={satellite.clone}
+            scale={mobile ? 0.1 : 0.15}
+          />
           <CylinderCollider
             args={[0.4, 0.225]}
             position={[0.15, 0, -0.2]}

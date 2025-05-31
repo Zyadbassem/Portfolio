@@ -1,7 +1,7 @@
 import { Html } from "@react-three/drei";
 import ProjectElement from "./ProjectElement";
 
-function Projects({ position }) {
+function Projects({ position, mobile = false }) {
   return (
     <Html position={position} transform>
       <ProjectElement
@@ -13,6 +13,7 @@ function Projects({ position }) {
         techImage2="reactlogo.png"
         techImage3="jslogo.png"
         techImage4="threelogo.png"
+        mobile={mobile}
       />
       <ProjectElement
         title="Where to Watch This"
@@ -23,6 +24,7 @@ function Projects({ position }) {
         techImage2="reactlogo.png"
         techImage3="jslogo.png"
         techImage4="htmllogo.png"
+        mobile={mobile}
       />
       <ProjectElement
         title="Porsche 911 page"
@@ -33,6 +35,7 @@ function Projects({ position }) {
         techImage2="reactlogo.png"
         techImage3="jslogo.png"
         techImage4="htmllogo.png"
+        mobile={mobile}
       />
       <ProjectElement
         title="Solar System"
@@ -43,6 +46,7 @@ function Projects({ position }) {
         techImage2="reactlogo.png"
         techImage3="jslogo.png"
         techImage4="htmllogo.png"
+        mobile={mobile}
       />
     </Html>
   );

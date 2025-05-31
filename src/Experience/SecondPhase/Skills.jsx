@@ -1,13 +1,12 @@
 import { Html } from "@react-three/drei";
 
-function Skills({ position = [0, 0, 0] }) {
+function Skills({ position = [0, 0, 0], mobile }) {
   return (
     <Html transform position={position} raycast={false}>
       <div
         style={{
-          width: "500px",
-          height: "50vh",
-
+          width: mobile ? "350px" : "500px",
+          height: mobile ? "500px" : "50vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -21,7 +20,7 @@ function Skills({ position = [0, 0, 0] }) {
           style={{
             fontFamily: "Kumar One, serif",
             color: "white",
-            fontSize: "50px",
+            fontSize: mobile ? "30px" : "50px",
           }}
         >
           Skills
@@ -37,15 +36,23 @@ function Skills({ position = [0, 0, 0] }) {
           >
             <img
               src="/project_assets/logos/djangologo.png"
-              style={{ width: "50px", margin: "20px", height: "50px" }}
+              style={{
+                width: mobile ? "40px" : "50px",
+                margin: "20px",
+                height: mobile ? "40px" : "50px",
+              }}
             />
             <img
               src="/project_assets/logos/expressjslogo.png"
-              style={{ width: "80px", margin: "20px" }}
+              style={{ width: mobile ? "60px" : "80px", margin: "20px" }}
             />
             <img
               src="/project_assets/logos/reactlogo.png"
-              style={{ width: "50px", margin: "20px", height: "50px" }}
+              style={{
+                width: mobile ? "40px" : "50px",
+                margin: "20px",
+                height: mobile ? "40px" : "50px",
+              }}
             />
           </div>
           <div
@@ -58,11 +65,19 @@ function Skills({ position = [0, 0, 0] }) {
           >
             <img
               src="/project_assets/logos/threelogo.png"
-              style={{ width: "50px", margin: "20px", height: "50px" }}
+              style={{
+                width: mobile ? "40px" : "50px",
+                margin: "20px",
+                height: mobile ? "40px" : "50px",
+              }}
             />
             <img
               src="/project_assets/logos/htmllogo.png"
-              style={{ width: "50px", margin: "20px", height: "50px" }}
+              style={{
+                width: mobile ? "40px" : "50px",
+                margin: "20px",
+                height: mobile ? "40px" : "50px",
+              }}
             />
           </div>
         </div>

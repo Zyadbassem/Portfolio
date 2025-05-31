@@ -1,4 +1,4 @@
-function PhoneControls() {
+function PhoneControls({ mobile = true }) {
   const handleControllersDown = (e) => {
     e.preventDefault();
     const controllerId = e.currentTarget.id;
@@ -17,7 +17,7 @@ function PhoneControls() {
     });
     window.dispatchEvent(event);
   };
-  return (
+  return !mobile ? null : (
     <div
       id="controls"
       style={{

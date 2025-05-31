@@ -1,6 +1,14 @@
 import { Html } from "@react-three/drei";
 
-function GravityController({ position = [0, 0, 0] }) {
+function GravityController({ position = [0, 0, 0], mobile }) {
+  const handleClick = () => {
+    console.log("hhh");
+    if (!mobile) return;
+
+    const event = new Event("toggleTheHole");
+
+    window.dispatchEvent(event);
+  };
   return (
     <Html transform position={position} raycast={true}>
       <div
@@ -15,6 +23,7 @@ function GravityController({ position = [0, 0, 0] }) {
           gap: "20px",
           cursor: "pointer",
         }}
+        onClick={handleClick}
       >
         <h1
           style={{
@@ -22,9 +31,12 @@ function GravityController({ position = [0, 0, 0] }) {
             color: "white",
             fontSize: "10px",
             margin: "0 30px",
+            padding: "10px",
           }}
         >
-          H Key will toggle the hole gravity
+          {mobile
+            ? "click to toggle the hole gravity"
+            : "H Key will toggle the hole gravity"}
         </h1>
       </div>
     </Html>

@@ -1,12 +1,12 @@
 import { Html } from "@react-three/drei";
 
-function Certificates({ position = [0, 0, 0] }) {
+function Certificates({ position = [0, 0, 0], mobile }) {
   return (
     <Html transform position={position}>
       <div
         style={{
-          width: "500px",
-          height: "50vh",
+          width: mobile ? "350px" : "500px",
+          height: mobile ? "500px" : "50vh",
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
@@ -20,7 +20,7 @@ function Certificates({ position = [0, 0, 0] }) {
           style={{
             fontFamily: "Kumar One, serif",
             color: "white",
-            fontSize: "30px",
+            fontSize: mobile ? "25px" : "30px",
             paddingBottom: "20px",
             marginLeft: "20px",
             borderBottom: "1px solid white",
@@ -29,16 +29,40 @@ function Certificates({ position = [0, 0, 0] }) {
           Certificates & Courses
         </h1>
         <ul>
-          <li style={{ color: "white", margin: "0 auto 20px 0" }}>
+          <li
+            style={{
+              color: "white",
+              margin: "0 auto 20px 0",
+              fontSize: mobile ? "15px" : "20px",
+            }}
+          >
             Bachelor of Information technology (in progress)
           </li>
-          <li style={{ color: "white", margin: "0 auto 20px 0" }}>
+          <li
+            style={{
+              color: "white",
+              margin: "0 auto 20px 0",
+              fontSize: mobile ? "15px" : "20px",
+            }}
+          >
             CS50 & CS50 Web
           </li>
-          <li style={{ color: "white", margin: "0 auto 20px 0" }}>
+          <li
+            style={{
+              color: "white",
+              margin: "0 auto 20px 0",
+              fontSize: mobile ? "15px" : "20px",
+            }}
+          >
             Three.js journey by Bruno Simon
           </li>
-          <li style={{ color: "white", margin: "0 auto 20px 0" }}>
+          <li
+            style={{
+              color: "white",
+              margin: "0 auto 20px 0",
+              fontSize: mobile ? "15px" : "20px",
+            }}
+          >
             Responsive web designing from freeCodeCamp
           </li>
         </ul>

@@ -2,7 +2,7 @@ import { Text3D, Center } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-function ArrowAndText({ text, position }) {
+function ArrowAndText({ text, position, mobile = false }) {
   const textRef = useRef();
   useFrame(({ clock }) => {
     if (textRef.current) {
@@ -10,7 +10,7 @@ function ArrowAndText({ text, position }) {
       textRef.current.position.x = Math.sin(clock.elapsedTime) * 2 - 10; // Rotate the text
     }
   });
-  return (
+  return mobile ? null : (
     <>
       <Center position={position} ref={textRef}>
         <Text3D

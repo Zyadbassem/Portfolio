@@ -30,7 +30,7 @@ function Desert({ position }) {
         <CuboidCollider args={[15, 0.1, 5]} />
       </RigidBody>
       <group>
-        <mesh scale={[15, 1, 10]} ref={desRef}>
+        <mesh scale={[15, 1, 15]} ref={desRef}>
           <boxGeometry
             args={[
               uniforms.width.value,
