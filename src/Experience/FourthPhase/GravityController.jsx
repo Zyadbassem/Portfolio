@@ -18,7 +18,7 @@ function GravityController({ position = [0, 0, 0] }) {
       >
         <h1
           style={{
-            fontFamily: "Kumar One, serif",
+            fontFamily: "serif",
             color: "white",
             fontSize: "10px",
             margin: "0 30px",

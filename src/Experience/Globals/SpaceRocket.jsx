@@ -56,7 +56,6 @@ function SpaceRocket({ cameraFollower = true }) {
       if (e.key === "ArrowUp" || e.key === "w") {
         setThrusting(true);
       } else if (e.key === "h") {
-        console.log("hhhh");
         setBlackHoleActive((prev) => !prev);
       }
     };
@@ -87,16 +86,53 @@ function SpaceRocket({ cameraFollower = true }) {
       }
       if (e.key === "ArrowUp" || e.key === "w") {
         setThrusting(false);
-        console.log("Thrusting set to false");
       }
     };
 
+    const handleControllersDown = (e) => {
+      console.log(e.detail.action);
+      if (
+        ["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"].includes(
+          e.detail.action
+        )
+      ) {
+        keysPressed.current[e.detail.action] = true;
+      }
+      if (e.detail.action === "ArrowUp") {
+        setThrusting(true);
+      }
+    };
+
+    const handleControllersUp = (e) => {
+      console.log(e.detail.action);
+      if (
+        ["ArrowUp", "ArrowLeft", "ArrowRight", "ArrowDown"].includes(
+          e.detail.action
+        )
+      ) {
+        keysPressed.current[e.detail.action] = false;
+      }
+      if (
+        (e.detail.action === "ArrowLeft" || e.detail.action === "ArrowRight") &&
+        spaceRocketRef.current
+      ) {
+        spaceRocketRef.current.setRotation({ x: 0, y: 0, z: 0, w: 1 });
+      }
+      if (e.detail.action === "ArrowUp") {
+        setThrusting(false);
+      }
+    };
+
+    window.addEventListener("controllerDown", handleControllersDown);
+    window.addEventListener("controllerUp", handleControllersUp);
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("controllerDown", handleControllersDown);
+      window.removeEventListener("controllerUp", handleControllersUp);
     };
   }, []);
 
@@ -107,7 +143,7 @@ function SpaceRocket({ cameraFollower = true }) {
     const dis = Math.sqrt(farX ** 2 + farY ** 2);
 
     // If the rocket is close > 1.5 or is so far
-    if (dis < 0.5 || dis > MAX_ATTRACTION_DISTANCE || !blackHoleActive) {
+    if (dis < 1 || dis > MAX_ATTRACTION_DISTANCE || !blackHoleActive) {
       return { x: 0, y: 0 };
     }
 

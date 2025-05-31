@@ -10,22 +10,28 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      e.key === "ArrowUp" || (e.key === "w" && !arrowClicked)
+      e.key === "ArrowUp" ||
+      (e.key === "w" && !arrowClicked) ||
+      e.detail.action === "ArrowUp"
         ? setArrowClicked(true)
         : null;
     };
 
-    window.addEventListener("keydown", handleKeyDown);
-
     const handleKeyUp = (e) => {
-      e.key === "ArrowUp" || e.key === "w" ? setArrowClicked(false) : null;
+      e.key === "ArrowUp" || e.key === "w" || e.detail.action === "ArrowUp"
+        ? setArrowClicked(false)
+        : null;
     };
 
+    window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
-
+    window.addEventListener("controllerDown", handleKeyDown);
+    window.addEventListener("controllerUp", handleKeyUp);
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("controllerDown", handleKeyDown);
+      window.removeEventListener("controllerUp", handleKeyUp);
     };
   }, [speed]);
   const count = 800;
@@ -49,7 +55,6 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
 
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute("speed", new THREE.BufferAttribute(speedArray, 1));
-    console.log(geometry);
     return geometry;
   }, [count, width, height, depth]);
   const material = useMemo(() => {
