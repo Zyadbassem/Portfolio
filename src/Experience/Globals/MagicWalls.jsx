@@ -6,14 +6,14 @@ function MagicWalls({ mobile }) {
       <RigidBody
         type="fixed"
         colliders={false}
-        position={[mobile ? 5 : 15, 70, 0]}
+        position={[mobile ? 5 : 10, 70, 0]}
       >
         <CuboidCollider args={[1, 70, 1]} />
       </RigidBody>
       <RigidBody
         type="fixed"
         colliders={false}
-        position={[mobile ? -5 : -15, 70, 0]}
+        position={[mobile ? -5 : -10, 70, 0]}
       >
         <CuboidCollider args={[1, 70, 1]} />
       </RigidBody>

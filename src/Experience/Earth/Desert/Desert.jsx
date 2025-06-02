@@ -7,9 +7,9 @@ import { useRef } from "react";
 
 function Desert({ position }) {
   const desRef = useRef();
-  useFrame((frame) => {
-    desRef.current.position.x = frame.camera.position.x;
-  });
+  // useFrame((frame) => {
+  //   desRef.current.position.x = frame.camera.position.x;
+  // });
   const uniforms = {
     width: {
       value: 1.0,
@@ -30,7 +30,7 @@ function Desert({ position }) {
         <CuboidCollider args={[15, 0.1, 5]} />
       </RigidBody>
       <group>
-        <mesh scale={[15, 1, 15]} ref={desRef}>
+        <mesh scale={[30, 1, 15]} ref={desRef}>
           <boxGeometry
             args={[
               uniforms.width.value,

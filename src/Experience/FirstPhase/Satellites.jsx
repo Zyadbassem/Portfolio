@@ -53,7 +53,7 @@ function Satellites({ mobile = false }) {
           <primitive
             key={index}
             object={satellite.clone}
-            scale={mobile ? 0.1 : 0.15}
+            scale={mobile ? 0.1 : 0.1}
           />
           <CylinderCollider
             args={[0.4, 0.225]}
