@@ -10,7 +10,7 @@ function SecondPhase({ position = [0, 0, 0], mobile }) {
         position={mobile ? [0, -10, -30] : [-10, -10, -30]}
         mobile={mobile}
       />
-      {mobile ? null : <Moon position={[13, -10, -25]} />}
+      {mobile ? null : <Moon position={[10, -10, -25]} />}
     </group>
   );
 }

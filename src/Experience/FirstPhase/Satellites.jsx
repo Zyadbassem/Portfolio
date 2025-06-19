@@ -13,10 +13,10 @@ function Satellites({ mobile = false }) {
   const satellites = useMemo(() => {
     const clonedSatellites = [];
     for (let i = 0; i < count; i++) {
-      const width = mobile ? 5 : 15;
-      const height = 10;
+      const width = mobile ? 5 : 10;
+      const height = 30;
       const randomX = (Math.random() - 0.5) * width;
-      const randomY = (Math.random() - 0.5) * height;
+      const randomY = Math.random() * height;
       const randomYRotation = Math.random() * Math.PI * 2;
       const randomZRotation = Math.random() * Math.PI * 2;
       clonedSatellites.push({

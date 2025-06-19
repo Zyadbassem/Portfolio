@@ -1,7 +1,8 @@
 import { useTexture } from "@react-three/drei";
-import * as THREE from "three";
 import Skill from "./Skill";
 import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useRef, useState } from "react";
 function Project({
   projectName = "outfit oasis",
   projectDescription = "",
@@ -20,7 +21,15 @@ function Project({
   position = [0, 0, 0],
   projectLink = "https://solarsysytembyzyad.vercel.app/",
 }) {
-  const texture = useTexture(`./project_assets/projects/${planet}.jpg`);
+  const texture = useTexture(`./project_assets/projects/${planet}`);
+  const planetRef = useRef();
+
+  const [hovered, setHovered] = useState(false);
+  useFrame((s, d) => {
+    if (hovered) {
+      planetRef.current.rotation.y += d * 0.5;
+    }
+  });
   return (
     <group position={position}>
       <Html transform position={[0, 3.5, 0]}>
@@ -63,7 +72,7 @@ function Project({
               style={{
                 color: "white",
                 fontFamily: "sans-serif",
-                fontSize: "12px",
+                fontSize: "10px",
                 fontWeight: "800",
                 marginLeft: "auto",
                 marginRight: "auto",
@@ -85,13 +94,18 @@ function Project({
           </p>
         </a>
       </Html>
-      <mesh>
+      <mesh
+        onPointerOver={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+        ref={planetRef}
+      >
         <sphereGeometry args={[radius]} />
-        <meshToonMaterial map={texture} />
+        <meshMatcapMaterial map={texture} />
       </mesh>
-      {skills.map(({ logo, position, rotation, radius, offset }) => {
+      {skills.map(({ logo, position, rotation, radius, offset }, i) => {
         return (
           <Skill
+            key={i}
             logo={logo}
             position={position}
             rotation={rotation}

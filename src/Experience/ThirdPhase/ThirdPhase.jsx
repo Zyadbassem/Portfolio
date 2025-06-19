@@ -18,7 +18,7 @@ function ThirdPhase({ position = [0, 0, 0], mobile }) {
         radiusp={11}
       />
       <Certificates
-        position={mobile ? [0, 0, -30] : [12, 0, -30]}
+        position={mobile ? [0, 0, -30] : [10, 0, -30]}
         mobile={mobile}
       />
     </group>
