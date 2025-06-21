@@ -21,7 +21,7 @@ function Meteorite({
 
   /** FLAMES CONTROLLER */
   const { countHolder, maxWidth, maxHeight, maxDepth, speed } = {
-    countHolder: 1000,
+    countHolder: 400,
     maxWidth: 0.5,
     maxHeight: 5,
     maxDepth: 0.4,

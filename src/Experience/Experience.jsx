@@ -38,7 +38,7 @@ function Experience({ mobile = false }) {
           <Earth />
           {/* <Clouds position={[0, 10, 0]} /> */}
           <FirstPhase position={[0, 20, 0]} mobile={mobile} />
-          <SecondPhase position={[0, 70, 0]} mobile={mobile} />
+          <SecondPhase position={[0, 55, mobile ? -30 : -20]} mobile={mobile} />
           <ThirdPhase position={[0, 85, 0]} mobile={mobile} />
           <FourthPhase position={[0, 110, 0]} mobile={mobile} />
           <OrbitControls enabled={false} />
