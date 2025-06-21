@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import Bullet from "./Bullet";
-import SpaceShip from "./SpaceShip";
-import AudioSetUp from "./AudioSetUp";
-function SpaceShipsScene() {
+import SpaceShip from "./SpaceShip.jsx";
+import AudioSetUp from "./AudioSetUp.jsx";
+function SpaceShipsScene({ mobile = false }) {
   // State for bullets and audiolistener
   const [bullets, setBullets] = useState([]);
   const [audioListener, setAudioListener] = useState(null);
@@ -29,19 +29,19 @@ function SpaceShipsScene() {
       <SpaceShip
         speed={0.8}
         createNewBullet={addBullet}
-        position={[-7, 0, 0]}
+        position={[mobile ? -4 : -7, 0, 0]}
         rotation={[0, 0.5 * Math.PI, 0]}
-        pointA={{ x: -7, y: 0, z: 0 }}
-        pointB={{ x: -5, y: 4, z: 0 }}
-        pointC={{ x: -9, y: 2, z: 0 }}
+        pointA={{ x: mobile ? -4 : -7, y: 0, z: 0 }}
+        pointB={{ x: mobile ? -3 : -5, y: 4, z: 0 }}
+        pointC={{ x: mobile ? -6 : -9, y: 2, z: 0 }}
         audioListener={audioListener}
         modelNum={0}
       />
       <SpaceShip
-        pointA={{ x: 7, y: 1, z: 0 }}
-        pointB={{ x: 5, y: 5.5, z: 0 }}
-        pointC={{ x: 9, y: 3.5, z: 0 }}
-        position={[7, 1, 0]}
+        pointA={{ x: mobile ? 4 : 7, y: 1, z: 0 }}
+        pointB={{ x: mobile ? 3 : 5, y: 5.5, z: 0 }}
+        pointC={{ x: mobile ? 6 : 9, y: 3.5, z: 0 }}
+        position={[mobile ? 4 : 7, 1, 0]}
         spaceShipNum={2}
         rotation={[0, 0, 0]}
         speed={1}

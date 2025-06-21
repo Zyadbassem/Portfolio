@@ -12,6 +12,7 @@ import SecondPhase from "./SecondPhase/SecondPhase";
 import Background from "./Background/Background";
 import ThirdPhase from "./ThirdPhase/ThirdPhase";
 import FourthPhase from "./FourthPhase/FourthPhase";
+import BackgroundAudio from "./Background/BackgroundAudio";
 function Experience({ mobile = false }) {
   return (
     <>
@@ -46,6 +47,7 @@ function Experience({ mobile = false }) {
           <ambientLight intensity={0.5} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
           <SpaceRocket cameraFollower={true} mobile={mobile} />
+          <BackgroundAudio />
         </Physics>
       </Canvas>
     </>

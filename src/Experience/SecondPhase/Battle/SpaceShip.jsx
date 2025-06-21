@@ -68,7 +68,7 @@ function SpaceShip({
     return () => {
       if (audioRef.current) {
         audioRef.current.stop();
-        audioRef.current.reset();
+        // audioRef.current.reset();
       }
     };
   }, [audioListener]);

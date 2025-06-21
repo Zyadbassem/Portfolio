@@ -36,7 +36,7 @@ function Meteorite({
       rigidBodyRef.current.setAngvel({ x: 0, y: 0, z: 0 });
       // Apply initial impulse
       rigidBodyRef.current.applyImpulse({
-        x: -initialImpulse,
+        x: -initialImpulse * 1.2,
         y: -initialImpulse,
         z: 0,
       });

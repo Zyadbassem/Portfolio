@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { Html } from "@react-three/drei";
 
 function Bullet({
-  count = 10000,
+  count = 1500,
   positionA = { x: -5, y: 0, z: 0 },
   positionB = { x: 30, y: 0, z: 0 },
   invert = false,
