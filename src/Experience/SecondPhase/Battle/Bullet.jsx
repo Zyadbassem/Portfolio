@@ -4,6 +4,7 @@ import fragmentShader from "./fragment.glsl";
 import vertexShader from "./vertex.glsl";
 import { gsap } from "gsap";
 import { Html } from "@react-three/drei";
+import useAudioListener from "../../Globals/useAudioListener";
 
 function Bullet({
   count = 1500,
@@ -14,11 +15,11 @@ function Bullet({
   removeBullet = () => {},
   bulletColor = "#fff",
   skillName = "React",
-  audioListener = null,
 }) {
   // Handle the color of the bullet (will be passed as a uniform)
   const { r, g, b } = new THREE.Color(bulletColor);
   const passColor = new THREE.Vector3(r, g, b);
+  const audioListener = useAudioListener();
 
   // Audio setup
   const positionalAudioRef = useRef();
@@ -119,8 +120,9 @@ function Bullet({
           style={{
             color: "white",
             fontFamily: "sans-serif",
-            fontSize: "10px",
-            padding: "5px",
+            fontWeight: "lighter",
+            fontSize: "15px",
+            padding: "0px",
           }}
         >
           {skillName}

@@ -8,7 +8,7 @@ import {
 } from "@react-three/rapier";
 function Satellites({ mobile = false }) {
   const satellitesRef = useRef([]);
-  const gltf = useGLTF("/satellites.glb");
+  const gltf = useGLTF("./Background/satellites.glb");
   const count = 7;
   const satellites = useMemo(() => {
     const clonedSatellites = [];

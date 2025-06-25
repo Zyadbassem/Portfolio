@@ -5,7 +5,7 @@ import WarningSign from "./WarningSign";
 function Fence({ position = [0, 0, 0] }) {
   return (
     <>
-      <group position={position} scale={[4, 4, 4]}>
+      <group position={position} scale={[5, 5, 5]}>
         <FencePart position={[0, 0, 0]} rotation={[0, 0, 0.25 * Math.PI]} />
         <FencePart position={[-0.17, 0, 0]} rotation={[0, 0, 0.25 * Math.PI]} />
         <FencePart position={[0.17, 0, 0]} rotation={[0, 0, 0.25 * Math.PI]} />

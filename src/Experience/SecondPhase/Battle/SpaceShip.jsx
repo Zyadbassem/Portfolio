@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
+import useAudioListener from "../../Globals/useAudioListener";
 
 function SpaceShip({
   position = [-5, 0, 0],
@@ -27,13 +28,13 @@ function SpaceShip({
       color: "#77ad69",
     },
   ],
-  audioListener = null,
   modelNum = 1,
 }) {
   // Get the spaceship model and give it a ref so we could control animation
   const { scene } = useGLTF(`./ship/spaceship${modelNum}.glb`);
   const spaceShipModel = useMemo(() => clone(scene), [scene]);
   const spaceShipRef = useRef();
+  const audioListener = useAudioListener();
 
   // audio ref that will handle the moving soun
   const audioRef = useRef();
@@ -51,8 +52,8 @@ function SpaceShip({
       "./ship/shippass0.mp3",
       (buffer) => {
         audio.setBuffer(buffer);
-        audio.setRefDistance(5);
-        audio.setVolume(0.5);
+        audio.setRefDistance(3);
+        audio.setVolume(0.3);
         audio.setLoop(false);
         spaceShipRef.current.add(audio);
         audioRef.current = audio;

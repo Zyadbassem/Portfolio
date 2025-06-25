@@ -317,7 +317,7 @@ function SpaceRocket({ cameraFollower = true, mobile = false }) {
 
       {/* 3D Model */}
       <Gltf
-        src="/spacerocket.glb"
+        src="./spacerocket/spacerocket.glb"
         scale={0.3}
         position={[0, 0.25, 0.08]}
         rotation={[0, Math.PI / 2, 0]}

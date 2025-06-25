@@ -1,12 +1,15 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import fragmentShader from "./shaders/flamefragment.glsl";
 import vertexShader from "./shaders/flamevertex.glsl";
 import { useFrame } from "@react-three/fiber";
+import useAudioListener from "./useAudioListener";
 
 function Flame({ position = [0, -0.05, 0.1], visible = true }) {
   const [speed, setSpeed] = useState(0.0);
   const [arrowClicked, setArrowClicked] = useState(false);
+  const listener = useAudioListener();
+  const audiRef = useRef(null);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -34,6 +37,29 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
       window.removeEventListener("controllerUp", handleKeyUp);
     };
   }, [speed]);
+
+  useEffect(() => {
+    if (!listener) return;
+
+    const audio = new THREE.Audio(listener);
+    const loader = new THREE.AudioLoader();
+    loader.load("./spacerocket/rocketmovingnoise.mp3", (buffer) => {
+      audio.setBuffer(buffer);
+      audio.setLoop(true);
+      audio.setVolume(0.03);
+      audiRef.current = audio;
+    });
+
+    if (arrowClicked) audio.play();
+    else audio.stop();
+  }, [listener]);
+
+  useEffect(() => {
+    if (!audiRef.current) return;
+    if (arrowClicked && !audiRef.current.isPlaying) audiRef.current.play();
+    else if (!arrowClicked && audiRef.current.isPlaying) audiRef.current.stop();
+  }, [arrowClicked]);
+
   const count = 800;
   const width = 1;
   const height = 5;

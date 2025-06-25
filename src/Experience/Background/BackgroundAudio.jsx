@@ -16,7 +16,7 @@ function BackgroundAudio() {
     loader.load("./Background/spacenoise.mp3", (buffer) => {
       audio.setBuffer(buffer);
       audio.setLoop(true);
-      audio.setVolume(0.5);
+      audio.setVolume(0.1);
       audio.play();
     });
   }, [listener]);
