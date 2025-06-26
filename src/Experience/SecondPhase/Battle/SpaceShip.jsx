@@ -43,43 +43,46 @@ function SpaceShip({
   /**
    * useEffect for handling the audio
    */
-  useEffect(() => {
-    if (!audioListener) return;
-    const audio = new THREE.PositionalAudio(audioListener);
+  // useEffect(() => {
+  //   if (!audioListener) return;
+  //   const audio = new THREE.PositionalAudio(audioListener);
 
-    const audioLoader = new THREE.AudioLoader();
-    audioLoader.load(
-      "./ship/shippass0.mp3",
-      (buffer) => {
-        audio.setBuffer(buffer);
-        audio.setRefDistance(3);
-        audio.setVolume(0.3);
-        audio.setLoop(false);
-        spaceShipRef.current.add(audio);
-        audioRef.current = audio;
-      },
-      (progress) => {
-        console.log("SpaceShip audio loading progress:", progress);
-      },
-      (error) => {
-        console.error("Error loading SpaceShip audio:", error);
-      }
-    );
+  //   const audioLoader = new THREE.AudioLoader();
+  //   audioLoader.load(
+  //     "./ship/shippass0.mp3",
+  //     (buffer) => {
+  //       audio.setBuffer(buffer);
+  //       audio.setRefDistance(3);
+  //       audio.setVolume(0.2);
+  //       audio.setLoop(false);
+  //       audio.setRefDistance(5);
+  //       audio.setRolloffFactor(2);
+  //       audio.setMaxDistance(10);
+  //       spaceShipRef.current.add(audio);
+  //       audioRef.current = audio;
+  //     },
+  //     (progress) => {
+  //       console.log("SpaceShip audio loading progress:", progress);
+  //     },
+  //     (error) => {
+  //       console.error("Error loading SpaceShip audio:", error);
+  //     }
+  //   );
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.stop();
-        // audioRef.current.reset();
-      }
-    };
-  }, [audioListener]);
+  //   return () => {
+  //     if (audioRef.current) {
+  //       audioRef.current.stop();
+  //       // audioRef.current.reset();
+  //     }
+  //   };
+  // }, [audioListener]);
 
   // function to play the sound
-  const playMovementSound = () => {
-    if (audioRef.current && audioRef.current.buffer) {
-      audioRef.current.play();
-    }
-  };
+  // const playMovementSound = () => {
+  //   if (audioRef.current && audioRef.current.buffer) {
+  //     audioRef.current.play();
+  //   }
+  // };
 
   // Handle the animation
   useEffect(() => {
@@ -98,7 +101,7 @@ function SpaceShip({
       y: pointB.y,
       z: pointB.z,
       ease: "back.inOut",
-      onStart: playMovementSound, // Sound plays when movement starts
+      // onStart: playMovementSound, // Sound plays when movement starts
     })
       // create a bullet at b
       .call(() => {
@@ -124,7 +127,7 @@ function SpaceShip({
         y: pointC.y,
         z: pointC.z,
         ease: "back.inOut",
-        onStart: playMovementSound, // Sound plays when movement starts
+        // onStart: playMovementSound, // Sound plays when movement starts
       })
 
       // create a bullet at c
@@ -152,7 +155,7 @@ function SpaceShip({
         y: pointA.y,
         z: pointA.z,
         ease: "back.inOut",
-        onStart: playMovementSound, // Sound plays when movement starts
+        // onStart: playMovementSound, // Sound plays when movement starts
       })
 
       // create a bullet at a

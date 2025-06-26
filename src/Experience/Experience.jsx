@@ -12,7 +12,20 @@ import SecondPhase from "./SecondPhase/SecondPhase";
 import Background from "./Background/Background";
 import ThirdPhase from "./ThirdPhase/ThirdPhase";
 import FourthPhase from "./FourthPhase/FourthPhase";
+import * as THREE from "three";
 import BackgroundAudio from "./Background/BackgroundAudio";
+import {
+  EffectComposer,
+  Bloom,
+  Noise,
+  ToneMapping,
+  Vignette,
+  SSAO,
+  Pixelation,
+  Scanline,
+  ChromaticAberration,
+} from "@react-three/postprocessing";
+import { UnrealBloomPass } from "three/examples/jsm/Addons.js";
 function Experience({ mobile = false }) {
   return (
     <>
@@ -49,6 +62,19 @@ function Experience({ mobile = false }) {
           <SpaceRocket cameraFollower={true} mobile={mobile} />
           <BackgroundAudio />
         </Physics>
+        {!mobile && (
+          <EffectComposer multisampling={0} disableNormalPass>
+            {/* Subtle glow on stars, lasers, engines */}
+            <Bloom
+              intensity={0.5}
+              luminanceThreshold={0.6}
+              luminanceSmoothing={0.5}
+            />
+
+            {/* Adds depth, mood — like space ambient darkness */}
+            <Vignette eskil={false} offset={0.1} darkness={1.3} />
+          </EffectComposer>
+        )}
       </Canvas>
     </>
   );

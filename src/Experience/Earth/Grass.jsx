@@ -7,13 +7,13 @@ import { RigidBody } from "@react-three/rapier";
 import { useThree } from "@react-three/fiber";
 
 function Grass() {
-  const { r, g, b } = useControls({
-    r: { value: 0.1, min: 0, max: 1, step: 0.01 },
-    g: { value: 1, min: 0, max: 1, step: 0.01 },
-    b: { value: 0.1, min: 0, max: 1, step: 0.01 },
-  });
+  const { r, g, b } = {
+    r: 0.1,
+    g: 1,
+    b: 0.1,
+  };
   const instancedMesh = useRef();
-  const instanceNumber = 500000;
+  const instanceNumber = 200000;
 
   const vertexShader = `
     varying vec2 vUv;
@@ -70,7 +70,7 @@ function Grass() {
 
     const dummy = new THREE.Object3D();
     const width = 50;
-    const height = 10;
+    const height = 15;
 
     for (let i = 0; i < instanceNumber; i++) {
       let z = (Math.random() - 0.5) * height;
@@ -115,7 +115,7 @@ function Grass() {
       </instancedMesh>
       <RigidBody type="fixed" position={[0, -0.2, 0]} restitution={0.5}>
         <mesh rotation={[0, 0, 0]}>
-          <boxGeometry args={[50, 0.2, 9, 1]} />
+          <boxGeometry args={[50, 0.2, 15, 1]} />
           <meshBasicMaterial color="#3f2219" opacity={0.5} />
         </mesh>
       </RigidBody>

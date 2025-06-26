@@ -3,8 +3,9 @@ import Meteorite from "./Meteorite";
 import { useFrame } from "@react-three/fiber";
 
 function Meteorites({ position = [0, 0, 0], count = 10 }) {
-  // initialize a state to hold the meteorites and inistantiate the first wave with use effect
+  // initialize a state to hold the meteorites and instantiate the first wave with use effect
   const [meteorites, setMeteorites] = useState([]);
+
   useEffect(() => {
     const initialMeteorites = [];
     for (let i = 0; i < count; i++) {
@@ -27,6 +28,8 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
       key: `meteorite-${id}-${Date.now()}-${Math.random()
         .toString(36)
         .substring(2, 9)}`,
+      // Add a creation timestamp to help with sound management
+      createdAt: Date.now(),
     };
   };
 
@@ -38,6 +41,7 @@ function Meteorites({ position = [0, 0, 0], count = 10 }) {
         const currentY = meteorite.ref?.current?.translation()?.y;
         if (currentY !== undefined && currentY < 20) {
           updated = true;
+          // Create a new meteorite when the old one goes too low
           return createNewMeteorite(meteorite.id);
         }
         return meteorite;

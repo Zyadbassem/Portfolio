@@ -15,8 +15,10 @@ function ThirdPhase({ position = [0, 0, 0], mobile }) {
         inColor="#0045ff"
         outColor="#f802ee"
         spinning={1.5}
-        radiusp={11}
+        radiusp={10}
+        countp={10000}
       />
+
       <Certificates
         position={mobile ? [0, 0, -30] : [10, 0, -30]}
         mobile={mobile}

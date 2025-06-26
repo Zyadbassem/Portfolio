@@ -46,7 +46,7 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
     loader.load("./spacerocket/rocketmovingnoise.mp3", (buffer) => {
       audio.setBuffer(buffer);
       audio.setLoop(true);
-      audio.setVolume(0.03);
+      audio.setVolume(0.3);
       audiRef.current = audio;
     });
 
@@ -87,7 +87,6 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
     return new THREE.ShaderMaterial({
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
-      blending: THREE.AdditiveBlending,
       uniforms: {
         width: {
           value: width,

@@ -74,8 +74,11 @@ function Bullet({
       audioLoaderRef.current.load("./ship/laserShot.mp3", (buffer) => {
         positionalAudio.setBuffer(buffer);
         positionalAudio.setRefDistance(5);
-        positionalAudio.setVolume(1);
+        positionalAudio.setVolume(0.5);
         positionalAudio.setLoop(false);
+        positionalAudio.setRefDistance(5);
+        positionalAudio.setRolloffFactor(2);
+        positionalAudio.setMaxDistance(10);
 
         groupRef.current.add(positionalAudio);
         positionalAudioRef.current = positionalAudio;

@@ -8,20 +8,11 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
     <>
       <group position={position}>
         <Satellites mobile={mobile} />
-        {/* <ArrowAndText
-          text={`Projects => `}
-          position={[0, 10, -30]}
-          mobile={mobile}
-        />
-        <Projects
-          position={mobile ? [0, 10, -20] : [10, 10, -20]}
-          mobile={mobile}
-        /> */}
         <Project
           position={[mobile ? 0 : -5, 0, -10]}
           radius={1.5}
           projectName="Solar System"
-          projectDescription="First project I made using three js library. Simple but cool.  learnt three js basics with this project. Planets movement is paced on realistic movements (closer to the sun moves faster)"
+          projectDescription="First project I made using three js library. Simple but cool.  learnt three js basics with this project. Planets movement is based on realistic movements (closer to the sun moves faster)"
           projectImage="solarSystem.png"
           projectLink="https://solarsysytembyzyad.vercel.app/"
           planet="moon.jpg"
@@ -60,7 +51,7 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
           position={[mobile ? 0 : 5, 8, -10]}
           radius={1.5}
           projectName="Porsche 911"
-          projectDescription="A scroll based animation page that can be used to shoe off fancy products like the Porsche 911 car. This app helped me improve my maths skills so I could make the animation as smooth as possible."
+          projectDescription="A scroll based animation page that can be used to show off fancy products like the Porsche 911 car. This app helped me improve my maths skills so I could make the animation as smooth as possible."
           projectImage="porsche911photoweb.png"
           projectLink="https://porsche911byzyad.vercel.app/"
           planet="mars.png"
@@ -99,7 +90,7 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
           position={[mobile ? 0 : -5, 16, -10]}
           radius={1.5}
           projectName="Where to watch this"
-          projectDescription="Where to watch this is an app built in my free time. the user enters a tv show / movie title and it shows them the streaming services that has this title. simple but useful and i used watch mode api for this app"
+          projectDescription="Where to watch this is an app where the user enters a tv show / movie title and it shows them the streaming services that has this title. simple but useful and I used watch mode api for this app"
           projectImage="wheretowatchthisapp.png"
           projectLink="https://wheretowatchthis.vercel.app/"
           planet="jupiter.jpg"
