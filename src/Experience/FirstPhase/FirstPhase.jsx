@@ -110,14 +110,14 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
               offset: 1.5,
             },
             {
-              logo: "threelogo",
+              logo: "expressjslogo",
               position: [1, 0, 1],
               rotation: [0, 0, 0],
               radius: 2,
               offset: 3,
             },
             {
-              logo: "expressjslogo",
+              logo: "htmllogo",
               position: [0, 0, 0],
               rotation: [0, 0, 0],
               radius: 2,

@@ -24,8 +24,8 @@ function SpaceShip({
       color: "#f2d01b",
     },
     {
-      skill: "Node",
-      color: "#77ad69",
+      skill: "Three js",
+      color: "#fff",
     },
   ],
   modelNum = 1,

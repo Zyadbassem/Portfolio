@@ -56,7 +56,7 @@ function Experience({ mobile = false }) {
           <ThirdPhase position={[0, 85, 0]} mobile={mobile} />
           <FourthPhase position={[0, 110, 0]} mobile={mobile} />
           <OrbitControls enabled={false} />
-          <Stars />
+          {/* <Stars /> */}
           <ambientLight intensity={0.5} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
           <SpaceRocket cameraFollower={true} mobile={mobile} />

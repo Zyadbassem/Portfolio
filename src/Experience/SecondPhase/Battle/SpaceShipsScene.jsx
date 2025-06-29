@@ -48,6 +48,20 @@ function SpaceShipsScene({ mobile = false }) {
         createNewBullet={addBullet}
         modelNum={1}
         audioListener={audioListener}
+        skillsAndColors={[
+          {
+            skill: "CS50",
+            color: "#9f1d2e",
+          },
+          {
+            skill: "BS in IT",
+            color: "#0f3873",
+          },
+          {
+            skill: "Three.js journey",
+            color: "#705df2",
+          },
+        ]}
       />
       {bullets.map((v, i) => {
         return (

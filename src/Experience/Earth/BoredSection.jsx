@@ -18,7 +18,11 @@ function BoredSection({ position = [0, 0, 0] }) {
             fontSize: "5px",
             padding: "10px 10px",
             border: "0.5px solid white",
+            textDecoration: "none",
+            color: "white",
           }}
+          href="https://drive.google.com/file/d/1sddDGm0pAExCNQzIbLUaZNnNCyxHs5NS/view?usp=sharing"
+          target="_blank"
         >
           Get my resume
         </a>
