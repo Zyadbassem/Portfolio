@@ -7,7 +7,7 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
   return (
     <>
       <group position={position}>
-        <Satellites mobile={mobile} />
+        <Satellites mobile={true} />
         <Project
           position={[mobile ? 0 : -5, 0, -10]}
           radius={1.5}

@@ -26,6 +26,7 @@ import {
   ChromaticAberration,
 } from "@react-three/postprocessing";
 import { UnrealBloomPass } from "three/examples/jsm/Addons.js";
+import Divider from "./Globals/Divider";
 function Experience({ mobile = false }) {
   return (
     <>
@@ -51,10 +52,15 @@ function Experience({ mobile = false }) {
           <Background />
           <Earth />
           {/* <Clouds position={[0, 10, 0]} /> */}
+          <Divider position={[0, 10, 0]} section="Projects" />
           <FirstPhase position={[0, 20, 0]} mobile={mobile} />
-          <SecondPhase position={[0, 55, mobile ? -30 : -20]} mobile={mobile} />
-          <ThirdPhase position={[0, 85, 0]} mobile={mobile} />
-          <FourthPhase position={[0, 110, 0]} mobile={mobile} />
+          <Divider position={[0, 60, 0]} section="Certificates & Skills" />
+          <SecondPhase position={[0, 70, mobile ? -30 : -20]} mobile={mobile} />
+          <Divider position={[0, 90, 0]} section="About me" />
+          <ThirdPhase position={[0, 110, 0]} mobile={mobile} />
+          <Divider position={[0, 130, 0]} section="Black Hole 👽" />
+          <Divider position={[0, 150, 0]} section="Contact" />
+          <FourthPhase position={[0, 140, 0]} mobile={mobile} />
           <OrbitControls enabled={false} />
           {/* <Stars /> */}
           <ambientLight intensity={0.5} />

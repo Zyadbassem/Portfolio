@@ -33,7 +33,7 @@ function SpaceRocket({ cameraFollower = true, mobile = false }) {
   const ROTATION_AMOUNT = 0.1;
   const TARGET_VEL = useRef({ x: 0, y: 0 });
   const BLACK_HOLE_X = 0;
-  const BLACK_HOLE_Y = 110;
+  const BLACK_HOLE_Y = 140;
   const MAX_ATTRACTION_DISTANCE = 15;
 
   useEffect(() => {
