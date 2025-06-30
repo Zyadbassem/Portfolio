@@ -2,19 +2,10 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useMemo } from "react";
 import Block from "./block";
-import { useControls } from "leva";
 
 function SpaceStation({ position = [0, 0, 0] }) {
   const groupRef = useRef();
   const model = useGLTF("./spacestation/spacestation.glb");
-  const { x, y, z, xR, yR, zR } = useControls({
-    x: { value: 0, min: -20, max: 20, step: 0.01 },
-    y: { value: 0, min: -20, max: 20, step: 0.01 },
-    z: { value: 0, min: -20, max: 20, step: 0.01 },
-    xR: { value: 0, min: -2, max: 2, step: 0.01 },
-    yR: { value: 0, min: -2, max: 2, step: 0.01 },
-    zR: { value: 0, min: -2, max: 2, step: 0.01 },
-  });
 
   // Precompute block positions and rotations to avoid recalculating each frame
   const blockConfigs = useMemo(
@@ -48,7 +39,7 @@ function SpaceStation({ position = [0, 0, 0] }) {
         rotation: [0 * Math.PI, 0.78 * Math.PI, 0 * Math.PI],
       },
     ],
-    [x, y, z, xR, yR, zR]
+    []
   );
 
   useFrame(({ clock }) => {

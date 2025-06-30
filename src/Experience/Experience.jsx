@@ -62,7 +62,7 @@ function Experience({ mobile = false }) {
           <Divider position={[0, 150, 0]} section="Contact" />
           <FourthPhase position={[0, 140, 0]} mobile={mobile} />
           <OrbitControls enabled={false} />
-          {/* <Stars /> */}
+          <Stars />
           <ambientLight intensity={0.5} />
           <directionalLight intensity={3} position={[-10, 20, 10]} />
           <SpaceRocket cameraFollower={true} mobile={mobile} />

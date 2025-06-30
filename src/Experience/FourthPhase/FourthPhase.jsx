@@ -1,3 +1,4 @@
+import AlienScene from "./AlienScene/AlienScene";
 import BlackHole from "./BlackHole/BlackHole";
 import Contact from "./Contact";
 import GravityController from "./GravityController";
@@ -5,7 +6,8 @@ import GravityController from "./GravityController";
 function FourthPhase({ position = [0, 0, 0], mobile = false }) {
   return (
     <group position={position}>
-      <Contact position={mobile ? [0, 30, -30] : [0, 30, -30]} />
+      {/* <Contact position={mobile ? [0, 30, -30] : [0, 30, -30]} /> */}
+      <AlienScene position={mobile ? [0, 30, -10] : [-5, 30, -10]} />
       <GravityController
         position={mobile ? [0, 3, -10] : [0, 4, -10]}
         mobile={mobile}
