@@ -1,6 +1,4 @@
 import Satellites from "./Satellites";
-import ArrowAndText from "./ArrowAndText";
-import Projects from "./Projects";
 import Project from "./Project/Project.jsx";
 
 function FirstPhase({ position = [0, 0, 0], mobile = false }) {
@@ -131,6 +129,7 @@ function FirstPhase({ position = [0, 0, 0], mobile = false }) {
           projectName="Outfit Oasis"
           projectDescription="Biggest project I built so far. This is an E-commerce web app with authentication and an admin  page. The admin can add an item with it’s 3d model and it will be added automatically to the clothing wheel. "
           projectImage="outfitoasisimage.png"
+          error="deployment issue"
           projectLink="https://outfitoasis-production-c9e3.up.railway.app/"
           planet="uranus.jpg"
           skills={[

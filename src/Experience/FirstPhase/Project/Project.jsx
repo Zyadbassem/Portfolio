@@ -3,6 +3,7 @@ import Skill from "./Skill";
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
+import { color } from "three/tsl";
 function Project({
   projectName = "outfit oasis",
   projectDescription = "",
@@ -20,6 +21,7 @@ function Project({
   radius = 0.5,
   position = [0, 0, 0],
   projectLink = "https://solarsysytembyzyad.vercel.app/",
+  error = "",
 }) {
   const texture = useTexture(`./project_assets/projects/${planet}`);
   const planetRef = useRef();
@@ -80,6 +82,9 @@ function Project({
             >
               {projectName}
             </h1>
+            {error && (
+              <span style={{ color: "white", fontSize: "5px" }}>({error})</span>
+            )}
           </div>
 
           <p

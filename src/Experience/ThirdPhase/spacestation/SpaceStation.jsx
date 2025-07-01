@@ -55,7 +55,7 @@ function SpaceStation({ position = [0, 0, 0] }) {
   });
 
   return (
-    <group position={position} ref={groupRef}>
+    <group position={position} ref={groupRef} scale={[0.4, 0.4, 0.4]}>
       <primitive object={model.scene} scale={[2, 2, 2]} />
       {blockConfigs.map((v, i) => (
         <Block key={i} position={v.position} rotation={v.rotation} />

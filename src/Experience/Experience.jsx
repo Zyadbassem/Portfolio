@@ -12,20 +12,8 @@ import SecondPhase from "./SecondPhase/SecondPhase";
 import Background from "./Background/Background";
 import ThirdPhase from "./ThirdPhase/ThirdPhase";
 import FourthPhase from "./FourthPhase/FourthPhase";
-import * as THREE from "three";
 import BackgroundAudio from "./Background/BackgroundAudio";
-import {
-  EffectComposer,
-  Bloom,
-  Noise,
-  ToneMapping,
-  Vignette,
-  SSAO,
-  Pixelation,
-  Scanline,
-  ChromaticAberration,
-} from "@react-three/postprocessing";
-import { UnrealBloomPass } from "three/examples/jsm/Addons.js";
+import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import Divider from "./Globals/Divider";
 function Experience({ mobile = false }) {
   return (

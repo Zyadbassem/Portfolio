@@ -6,7 +6,7 @@ import GravityController from "./GravityController";
 function FourthPhase({ position = [0, 0, 0], mobile = false }) {
   return (
     <group position={position}>
-      {/* <Contact position={mobile ? [0, 30, -30] : [0, 30, -30]} /> */}
+      <Contact position={mobile ? [0, 25, -10] : [5, 30, -10]} />
       <AlienScene position={mobile ? [0, 30, -10] : [-5, 30, -10]} />
       <GravityController
         position={mobile ? [0, 3, -10] : [0, 4, -10]}
