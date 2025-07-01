@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import Bullet from "./Bullet";
 import SpaceShip from "./SpaceShip.jsx";
-import AudioSetUp from "./AudioSetUp.jsx";
 function SpaceShipsScene({ mobile = false }) {
   // State for bullets and audiolistener
   const [bullets, setBullets] = useState([]);
@@ -25,7 +24,6 @@ function SpaceShipsScene({ mobile = false }) {
   }, []);
   return (
     <group>
-      <AudioSetUp setAudioListener={setAudioListener} />
       <SpaceShip
         speed={0.8}
         createNewBullet={addBullet}
