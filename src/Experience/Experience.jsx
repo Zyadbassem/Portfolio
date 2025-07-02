@@ -15,6 +15,7 @@ import FourthPhase from "./FourthPhase/FourthPhase";
 import BackgroundAudio from "./Background/BackgroundAudio";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import Divider from "./Globals/Divider";
+import { Cloud } from "@react-three/drei";
 function Experience({ mobile = false }) {
   return (
     <>
@@ -69,6 +70,16 @@ function Experience({ mobile = false }) {
             <Vignette eskil={false} offset={0.1} darkness={1.3} />
           </EffectComposer>
         )}
+        <Cloud
+          opacity={0.9}
+          speed={0.4}
+          segments={20}
+          volume={6}
+          color="#494949"
+          fade={true}
+          position={[0, -4, -5]}
+          scale={[5, 5, 5]}
+        />
       </Canvas>
     </>
   );
