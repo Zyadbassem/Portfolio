@@ -34,57 +34,7 @@ function SpaceShip({
   const { scene } = useGLTF(`./ship/spaceship${modelNum}.glb`);
   const spaceShipModel = useMemo(() => clone(scene), [scene]);
   const spaceShipRef = useRef();
-  const audioListener = useAudioListener();
 
-  // audio ref that will handle the moving soun
-  const audioRef = useRef();
-  const { camera } = useThree();
-
-  /**
-   * useEffect for handling the audio
-   */
-  // useEffect(() => {
-  //   if (!audioListener) return;
-  //   const audio = new THREE.PositionalAudio(audioListener);
-
-  //   const audioLoader = new THREE.AudioLoader();
-  //   audioLoader.load(
-  //     "./ship/shippass0.mp3",
-  //     (buffer) => {
-  //       audio.setBuffer(buffer);
-  //       audio.setRefDistance(3);
-  //       audio.setVolume(0.2);
-  //       audio.setLoop(false);
-  //       audio.setRefDistance(5);
-  //       audio.setRolloffFactor(2);
-  //       audio.setMaxDistance(10);
-  //       spaceShipRef.current.add(audio);
-  //       audioRef.current = audio;
-  //     },
-  //     (progress) => {
-  //       console.log("SpaceShip audio loading progress:", progress);
-  //     },
-  //     (error) => {
-  //       console.error("Error loading SpaceShip audio:", error);
-  //     }
-  //   );
-
-  //   return () => {
-  //     if (audioRef.current) {
-  //       audioRef.current.stop();
-  //       // audioRef.current.reset();
-  //     }
-  //   };
-  // }, [audioListener]);
-
-  // function to play the sound
-  // const playMovementSound = () => {
-  //   if (audioRef.current && audioRef.current.buffer) {
-  //     audioRef.current.play();
-  //   }
-  // };
-
-  // Handle the animation
   useEffect(() => {
     // timeline for ordering animation
     const tl = gsap.timeline({
@@ -127,7 +77,6 @@ function SpaceShip({
         y: pointC.y,
         z: pointC.z,
         ease: "back.inOut",
-        // onStart: playMovementSound, // Sound plays when movement starts
       })
 
       // create a bullet at c
@@ -155,7 +104,6 @@ function SpaceShip({
         y: pointA.y,
         z: pointA.z,
         ease: "back.inOut",
-        // onStart: playMovementSound, // Sound plays when movement starts
       })
 
       // create a bullet at a

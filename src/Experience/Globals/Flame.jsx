@@ -14,14 +14,14 @@ function Flame({ position = [0, -0.05, 0.1], visible = true }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       e.key === "ArrowUp" ||
-      (e.key === "w" && !arrowClicked) ||
+      (e.code === "KeyW" && !arrowClicked) ||
       e.detail.action === "ArrowUp"
         ? setArrowClicked(true)
         : null;
     };
 
     const handleKeyUp = (e) => {
-      e.key === "ArrowUp" || e.key === "w" || e.detail.action === "ArrowUp"
+      e.key === "ArrowUp" || e.code === "KeyW" || e.detail.action === "ArrowUp"
         ? setArrowClicked(false)
         : null;
     };
